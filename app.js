@@ -52,6 +52,7 @@ const state = {
   types: new Set(),
   rares: new Set(),
   costs: new Set(),
+  starCosts: new Set(), // 辉星花费筛选
   extra: new Set(),     // 预留（已无筛选项）
   ver: 'base',
   sort: 'default',
@@ -160,7 +161,7 @@ function toggleFilter(group, key, el){
 }
 function buildFilters(){
   const cc = countBy(c=>c.char), tc = countBy(c=>c.type), rc = countBy(c=>c.rarity);
-  const co = {}; APP.CARDS.forEach(c=>{ const k=c.cost; if(k!=='') co[k]=(co[k]||0)+1; });
+  const co = {}; APP.CARDS.forEach(c=>{ const keys=new Set(); if(c.cost!=='') keys.add(c.cost); if(String(c.starCost)==='X') keys.add('X'); keys.forEach(k=>co[k]=(co[k]||0)+1); });
   const costs = Object.keys(co).sort((a,b)=>{
     if(a==='X') return 1; if(b==='X') return -1; return (+a)-(+b);
   });
@@ -172,6 +173,11 @@ function buildFilters(){
   RARE_ORDER.filter(k=>rc[k]).forEach(k => mkChip(fR, k, RARE_CN[k], `var(--r-${k})`, rc[k], 'rares'));
   const fCost = $('#fCost'); fCost.innerHTML = '';
   costs.forEach(k => mkChip(fCost, k, k==='X'?'X 费':(k+' 费'), null, co[k], 'costs'));
+  // 辉星花费筛选（Star cost）
+  const fStar = $('#fStar'); fStar.innerHTML = '';
+  const so = {}; APP.CARDS.forEach(c=>{ const v=c.starCost; if(v!==undefined&&v!==null&&v!=='') so[v]=(so[v]||0)+1; });
+  const starCostsArr = Object.keys(so).sort((a,b)=>{ if(a==='X')return 1; if(b==='X')return -1; return (+a)-(+b); });
+  starCostsArr.forEach(k => mkChip(fStar, k, k==='X'?'辉星 X':'辉星 '+k, 'var(--star)', so[k], 'starCosts'));
   // "更多" 状态类筛选
   const fMore = $('#fMore'); fMore.innerHTML = '';
   const favCnt = getFavs().size;
@@ -190,23 +196,24 @@ function buildFilters(){
 function renderActive(){
   const row = $('#activeRow');
   row.innerHTML = '';
-  const addTag = (group, key, label) => {
+  const addTag = (group, key, label, contSel) => {
     const tag = document.createElement('span');
     tag.className = 'active-tag';
     tag.innerHTML = `<span>${esc(label)}</span><button title="移除">×</button>`;
     tag.querySelector('button').addEventListener('click', () => {
       state[group].delete(key);
-      // sync chip
-      const btn = document.querySelector(`.chip[data-k="${CSS.escape(key)}"]`);
+      // sync chip（按容器作用域定位，避免能量 X 与辉星 X 的 data-k 冲突）
+      const btn = document.querySelector(`${contSel} .chip[data-k="${CSS.escape(key)}"]`);
       if (btn) btn.classList.remove('on');
       apply();
     });
     row.appendChild(tag);
   };
-  state.chars.forEach(k => addTag('chars', k, CHAR_CN[k] || k));
-  state.types.forEach(k => addTag('types', k, TYPE_CN[k] || k));
-  state.rares.forEach(k => addTag('rares', k, RARE_CN[k] || k));
-  state.costs.forEach(k => addTag('costs', k, k === 'X' ? 'X 费' : k+' 费'));
+  state.chars.forEach(k => addTag('chars', k, CHAR_CN[k] || k, '#fChar'));
+  state.types.forEach(k => addTag('types', k, TYPE_CN[k] || k, '#fType'));
+  state.rares.forEach(k => addTag('rares', k, RARE_CN[k] || k, '#fRare'));
+  state.costs.forEach(k => addTag('costs', k, k === 'X' ? 'X 费' : k+' 费', '#fCost'));
+  state.starCosts.forEach(k => addTag('starCosts', k, k === 'X' ? '辉星 X' : '辉星 '+k, '#fStar'));
   if (state.favOnly){
     const tag = document.createElement('span');
     tag.className = 'active-tag';
@@ -247,7 +254,11 @@ function apply(){
     if (state.chars.size && !state.chars.has(c.char)) return false;
     if (state.types.size && !state.types.has(c.type)) return false;
     if (state.rares.size && !state.rares.has(c.rarity)) return false;
-    if (state.costs.size && !state.costs.has(c.cost)) return false;
+    if (state.costs.size){
+      const hitCost = state.costs.has(c.cost) || (state.costs.has('X') && String(c.starCost)==='X');
+      if (!hitCost) return false;
+    }
+    if (state.starCosts.size && !state.starCosts.has(String(c.starCost ?? ''))) return false;
     if (q){
       const hay = (c.name + ' ' + c.desc + ' ' + (c.descUp||'') + ' ' + c.slug).toLowerCase();
       if (!hay.includes(q)) return false;
@@ -293,7 +304,7 @@ function renderMore(){
     d.innerHTML = `
       <button class="c-fav ${isFavCard?'on':''}" title="${isFavCard?'取消收藏':'收藏'}" aria-label="收藏">${isFavCard?'★':'☆'}</button>
       <div class="c-top">
-        ${cost!=='' ? `<div class="c-cost${String(cost)==='X'?' x':''}">${esc(cost)}</div>` : '<div class="c-cost none"></div>'}
+        ${cost!=='' ? `<div class="c-cost${String(cost)==='X'?' x':''}">${esc(cost)}${(()=>{const v=up?(c.starCostUp??c.starCost):c.starCost;return (v!==undefined&&v!==null&&v!=='')?`<span class="c-star" title="辉星花费 ${esc(String(v))}">${esc(String(v))}</span>`:'';})()}</div>` : '<div class="c-cost none"></div>'}
         <div class="c-name">${esc(c.name)}</div>
       </div>
       <div class="c-badges">
@@ -406,11 +417,11 @@ function openModal(c, idx){
     <div class="sheet-body">
       <div class="vers">
         <div class="ver">
-          <div class="ver-hd"><span class="t">基础版</span>${c.cost!==''?`<span class="cost${String(c.cost)==='X'?' x':''}">${esc(c.cost)}</span>`:''}</div>
+          <div class="ver-hd"><span class="t">基础版</span>${c.cost!==''?`<span class="cost${String(c.cost)==='X'?' x':''}">${esc(c.cost)}${c.starCost?`<span class="c-star">${esc(c.starCost)}</span>`:''}</span>`:''}</div>
           <div class="ver-desc">${descHTML(c.desc)}</div>
         </div>
         <div class="ver up">
-          <div class="ver-hd"><span class="t">升级版</span>${c.costUp!==''?`<span class="cost${String(c.costUp)==='X'?' x':''}">${esc(c.costUp ?? c.cost)}</span>`:''}</div>
+          <div class="ver-hd"><span class="t">升级版</span>${c.costUp!==''?`<span class="cost${String(c.costUp)==='X'?' x':''}">${esc(c.costUp ?? c.cost)}${c.starCostUp?`<span class="c-star">${esc(c.starCostUp)}</span>`:''}</span>`:''}</div>
           <div class="ver-desc">${descHTML(c.descUp)}</div>
         </div>
       </div>
@@ -512,7 +523,7 @@ $('#verSeg').addEventListener('click', e => {
   state.ver = b.dataset.v; apply();
 });
 function resetAll(){
-  state.q=''; state.chars.clear(); state.types.clear(); state.rares.clear(); state.costs.clear();
+  state.q=''; state.chars.clear(); state.types.clear(); state.rares.clear(); state.costs.clear(); state.starCosts.clear();
   state.extra.clear(); state.favOnly = false;
   state.sort='default'; state.ver='base';
   $('#q').value=''; $('#searchBox').classList.remove('has-val'); $('#sort').value='default';
@@ -812,13 +823,15 @@ async function qzInfo(){
     else el.textContent = '题库暂无数据';
   }catch(e){ el.textContent = '题库 — 题 · 累计 — 次选择'; }
 }
-// 整轮会话内持续去重：用一副洗好的牌堆依次发牌，抽完才重新洗牌
+// 整轮会话内持续去重：开局把题库洗成一副牌依次发；本题库抽完即结束（不再自动重洗续接）
 function qzReset(){
-  QZ.seen.clear(); QZ.deck = []; QZ.pos = 0; QZ.idx = 0; QZ.answered = 0; QZ.agree = 0; QZ.mino = 0; QZ.cur = null;
+  QZ.seen.clear(); QZ.idx = 0; QZ.answered = 0; QZ.agree = 0; QZ.mino = 0; QZ.cur = null;
+  QZ.deck = QZ.ids.length ? shuffle(QZ.ids) : []; QZ.pos = 0;
 }
-// 「再来一轮」：只重置本轮得分统计，保留牌堆进度，继续去重不重复
+// 「再来一轮」：用户主动从头重洗一副新牌，完整重玩一遍
 function qzResetRound(){
-  QZ.idx = 0; QZ.answered = 0; QZ.agree = 0; QZ.mino = 0; QZ.cur = null;
+  QZ.seen.clear(); QZ.idx = 0; QZ.answered = 0; QZ.agree = 0; QZ.mino = 0; QZ.cur = null;
+  QZ.deck = QZ.ids.length ? shuffle(QZ.ids) : []; QZ.pos = 0;
 }
 async function qzNext(){
   if (QZ.busy) return;
@@ -826,17 +839,15 @@ async function qzNext(){
   try{
     let url;
     if (QZ.ids.length){
-      // 牌堆模式：依次取洗好的题目，抽完自动重洗（避免与上一张立刻重复）
+      // 牌堆模式：依次取洗好的题目；本题库已抽完则直接结算结束
       if (QZ.pos >= QZ.deck.length){
-        const total = QZ.ids.length;
-        QZ.deck = shuffle(QZ.ids);
-        if (QZ.cur && QZ.deck[0] === QZ.cur.id) QZ.deck.push(QZ.deck.shift()); // 上一张不立刻重来
-        QZ.pos = 0;
+        qzFinish();
+        return;
       }
       const id = QZ.deck[QZ.pos++];
       url = '/api/quiz/next?id=' + encodeURIComponent(id);
     } else {
-      // 兜底：服务端随机 + ex 去重
+      // 兜底：服务端随机 + ex 去重（极端情况下仍允许续玩）
       const ex = [...QZ.seen].slice(-300).join(',');
       url = '/api/quiz/next?ex=' + encodeURIComponent(ex);
     }
@@ -1112,7 +1123,7 @@ function bindQuiz(){
 
 /* ---------------- boot / 游戏切换 ---------------- */
 function resetFiltersUI(){
-  state.q=''; state.chars.clear(); state.types.clear(); state.rares.clear(); state.costs.clear();
+  state.q=''; state.chars.clear(); state.types.clear(); state.rares.clear(); state.costs.clear(); state.starCosts.clear();
   state.extra.clear(); state.favOnly=false; state.sort='default'; state.ver='base';
   $('#q').value=''; $('#searchBox').classList.remove('has-val'); $('#sort').value='default';
   [...$('#verSeg').children].forEach(x=>x.classList.toggle('on', x===$('#verSeg').querySelector('[data-v="base"]')));

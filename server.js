@@ -11,6 +11,7 @@ const path = require('path');
 const crypto = require('crypto');
 const zlib = require('zlib');
 const { WebSocketServer } = require('ws');
+const db = require('./db');
 
 // 防崩溃：单条异常（如畸形 WebSocket 消息、未捕获的 Promise 拒绝）不应拖垮整个服务进程
 process.on('uncaughtException', (e) => { console.error('[server] uncaughtException:', (e && e.stack) || e); });
@@ -111,40 +112,16 @@ function qidOf(text) {
   for (let i = 0; i < text.length; i++) h = ((h * 33) ^ text.charCodeAt(i)) >>> 0;
   return h.toString(36);
 }
-function loadQuiz() {
-  let mt = -1;
-  try { mt = fs.statSync(QUIZ_FILE).mtimeMs; } catch (_) { mt = -1; }
-  if (mt === QUIZ.mtime) return QUIZ.list;   // 未改动，直接用缓存
-  const list = [];
-  if (mt >= 0) {
-    try {
-      const raw = fs.readFileSync(QUIZ_FILE, 'utf8').replace(/^\uFEFF/, '');
-      raw.split(/\r?\n/).forEach(line => {
-        const s = line.trim();
-        if (!s || s.startsWith('#')) return;
-        const p = s.split('|').map(x => x.trim());
-        if (p.length < 3) return;
-        const q = p[0], a = p[1], b = p[2];
-        if (!q || !a || !b) return;
-        list.push({ id: qidOf(q + '|' + a + '|' + b), q, a, b, tag: p[3] || '' });
-      });
-    } catch (_) { }
-  }
-  QUIZ = { mtime: mt, list };
-  console.log('[quiz] 载入题目', list.length, '道');
-  return list;
-}
-function loadVotes() {
-  try { VOTES = JSON.parse(fs.readFileSync(VOTES_FILE, 'utf8')) || {}; }
-  catch (_) { VOTES = {}; }
-  const n = Object.keys(VOTES).length;
-  console.log('[quiz] 载入投票数据：', n, '道题已有记录');
+// 题库读取统一走 db.js（文件 / Neon 双模式）
+function loadQuiz() { return db.loadQuiz(); }
+async function loadVotes() {
+  try { VOTES = await db.loadVotes(); }
+  catch (e) { VOTES = {}; console.error('[quiz] 载入投票失败：', e.message); }
+  console.log('[quiz] 载入投票数据：', Object.keys(VOTES).length, '道题已有记录');
 }
 function saveVotes() {
-  try {
-    fs.writeFileSync(VOTES_FILE + '.tmp', JSON.stringify(VOTES));
-    fs.renameSync(VOTES_FILE + '.tmp', VOTES_FILE);
-  } catch (e) { console.error('[quiz] 投票写入失败（本次仅记在内存）：', e.message); }
+  // 防抖后异步持久化（DB 模式写 Neon，文件模式写 quiz-votes.json）
+  db.persistVotes(VOTES).catch(e => console.error('[quiz] 投票持久化失败：', e.message));
 }
 function markVotes() {
   votesDirty = true;
@@ -156,8 +133,19 @@ function totalVotes() {
   for (const k in VOTES) { const v = VOTES[k]; t += (v[0] || 0) + (v[1] || 0); }
   return t;
 }
-loadQuiz();
-loadVotes();
+// 启动：初始化数据库（若有 DATABASE_URL），加载投票并同步后台口令
+(async () => {
+  try { await db.initDb(); } catch (e) { console.error('[db] init 异常：', e.message); }
+  try { await loadVotes(); } catch (e) { VOTES = {}; console.error('[quiz] 载入投票失败：', e.message); }
+  if (db.isDb()) {
+    try {
+      const dbp = await db.getAdminPass();
+      if (dbp) ADMIN_PASS = dbp;
+      else await db.setAdminPass(ADMIN_PASS);
+      console.log('[quiz-admin] 口令来源：Neon 数据库');
+    } catch (e) { console.error('[quiz-admin] DB 口令同步失败：', e.message); }
+  }
+})();
 
 /* -----------------------------------------------------------
    题库后台（网页端维护，口令保护）
@@ -226,11 +214,11 @@ function readBody(req) {
 // 返回 false 表示不是已注册的 API（交给静态服务处理）
 async function handleApi(req, res, urlPath) {
   if (urlPath === '/api/quiz/info') {
-    const list = loadQuiz();
+    const list = await db.loadQuiz();
     return sendJSON(res, { ok: true, count: list.length, votes: totalVotes(), ids: list.map(q => q.id) });
   }
   if (urlPath === '/api/quiz/next') {
-    const list = loadQuiz();
+    const list = await db.loadQuiz();
     if (!list.length) return sendJSON(res, { ok: false, msg: '题库还是空的' });
     // 支持按 id 精确取题（前端用牌堆去重时走这条）
     let wantId = null;
@@ -254,7 +242,7 @@ async function handleApi(req, res, urlPath) {
     if (req.method !== 'POST') return sendJSON(res, { ok: false, msg: '需要用 POST 提交' }, 405);
     let body = {};
     try { body = JSON.parse((await readBody(req)) || '{}'); } catch (_) { }
-    const list = loadQuiz();
+    const list = await db.loadQuiz();
     const q = list.find(x => x.id === body.id);
     if (!q) return sendJSON(res, { ok: false, msg: '这道题已不在题库中（题库可能被改过）' }, 404);
     const choice = (body.choice === 1) ? 1 : 0;
@@ -286,33 +274,26 @@ async function handleApi(req, res, urlPath) {
 
     // 读取题库原文
     if (urlPath === '/api/quiz/admin/load') {
-      let raw = '', mtime = 0;
-      try { raw = fs.readFileSync(QUIZ_FILE, 'utf8'); } catch (_) { }
-      try { mtime = fs.statSync(QUIZ_FILE).mtimeMs; } catch (_) { }
+      let raw = '';
+      try { raw = await db.loadQuizRaw(); } catch (_) { }
       const { list, bad } = parseQuizText(raw);
-      return sendJSON(res, { ok: true, raw, count: list.length, bad, votes: totalVotes(), mtime });
+      return sendJSON(res, { ok: true, raw, count: list.length, bad, votes: totalVotes(), mtime: 0 });
     }
 
     // 保存题库（覆盖写；先备份再原子替换）
     if (urlPath === '/api/quiz/admin/save') {
       const raw = String(body.raw || '');
-      const { list, bad } = parseQuizText(raw);
-      if (!list.length) return sendJSON(res, { ok: false, msg: '没有识别到任何有效题目，已取消保存' }, 400);
-      try {
-        try { fs.copyFileSync(QUIZ_FILE, QUIZ_FILE + '.bak'); } catch (_) { }
-        fs.writeFileSync(QUIZ_FILE + '.tmp', raw, 'utf8');
-        fs.renameSync(QUIZ_FILE + '.tmp', QUIZ_FILE);
-      } catch (e) { return sendJSON(res, { ok: false, msg: '写入失败：' + e.message }, 500); }
-      QUIZ.mtime = -1;                      // 让下次请求重新读文件
-      const after = loadQuiz();
-      return sendJSON(res, { ok: true, count: after.length, bad, votes: totalVotes(), msg: '已保存，当前共 ' + after.length + ' 题' });
+      const res2 = await db.saveQuizRaw(raw);
+      if (!res2.ok) return sendJSON(res, { ok: false, msg: (res2.msg || '没有识别到任何有效题目，已取消保存') }, 400);
+      const after = await db.loadQuiz();
+      return sendJSON(res, { ok: true, count: after.length, bad: res2.bad, votes: totalVotes(), msg: '已保存，当前共 ' + after.length + ' 题' });
     }
 
     // 修改口令
     if (urlPath === '/api/quiz/admin/pass') {
       const np = String(body.pass || '');
       if (np.length < 4) return sendJSON(res, { ok: false, msg: '新口令至少 4 位' }, 400);
-      try { fs.writeFileSync(ADMIN_FILE, JSON.stringify({ password: np }, null, 2), 'utf8'); }
+      try { await db.setAdminPass(np); }
       catch (e) { return sendJSON(res, { ok: false, msg: '写入失败：' + e.message }, 500); }
       ADMIN_PASS = np;                      // 旧 token 立即失效
       const exp = Date.now() + TOKEN_TTL;
@@ -322,7 +303,8 @@ async function handleApi(req, res, urlPath) {
     // 票数：导出 / 导入 / 清空
     if (urlPath === '/api/quiz/admin/votes') {
       if (body.op === 'clear') {
-        VOTES = {}; saveVotes();
+        VOTES = {};
+        try { await db.clearVotes(); } catch (e) { console.error('[quiz] 清空票数失败：', e.message); }
         return sendJSON(res, { ok: true, msg: '票数已清空', votes: 0 });
       }
       if (body.op === 'import') {
@@ -336,7 +318,7 @@ async function handleApi(req, res, urlPath) {
           VOTES[k] = [Number(v[0]) || 0, Number(v[1]) || 0];
           n++;
         }
-        saveVotes();
+        try { await db.persistVotes(VOTES); } catch (e) { console.error('[quiz] 导入票数失败：', e.message); }
         return sendJSON(res, { ok: true, msg: '已导入 ' + n + ' 道题的票数', votes: totalVotes() });
       }
       return sendJSON(res, { ok: true, data: JSON.stringify(VOTES), votes: totalVotes() });

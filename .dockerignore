@@ -1,7 +1,7 @@
 node_modules/
+.git/
 .workbuddy/
 *.log
-.DS_Store
 _art.json
 _basic_art.json
-push-log.txt
+quiz.txt.bak

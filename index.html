@@ -12,6 +12,7 @@
   --char-necrobinder:#b07dea; --char-regent:#f0b23c; --char-colorless:#93a5bd; --char-token:#5fd0c4;
   --char-watcher:#c78bff; --char-event:#e07b9b; --char-status:#8a93a6; --char-curse:#c44b6b; --char-quest:#6bbf8a; --char-derivative:#5fd0c4;
   --r-special:#e0a94e;
+  --star:#5b9cff;
 }
 html[data-theme="dark"]{
   --bg:#080b12; --bg-grad-1:#0d1526; --bg-grad-2:#0a0f1a;
@@ -44,6 +45,7 @@ html[data-theme="light"]{
   --r-common:#5d6b82; --r-uncommon:#2563eb; --r-rare:#b7791f; --r-token:#0d9488;
   --r-starter:#64748b; --r-event:#be4a6e; --r-elder:#a8548f; --r-status:#6b7280; --r-curse:#9b2c47; --r-quest:#2f8f5b;
   --input-bg:#ffffff;
+  --star:#1e5fd8;
   --num-dmg:#dc2626; --num-blk:#1d4ed8; --num-hp:#dc2626;
   --num-vuln:#b45309; --num-weak:#6d28d9;
   --num-ar:#0d9488; --num-str:#dc2626; --num-dex:#1d4ed8;
@@ -158,6 +160,8 @@ html[data-theme="light"] .ic-sun{display:none} html[data-theme="light"] .ic-moon
 .fgroup{display:flex;flex-direction:column;gap:7px}
 .flabel{font-size:11px;color:var(--text-mute);text-transform:uppercase;letter-spacing:.12em;font-weight:700}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
+.subfilter{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:8px;padding-top:8px;border-top:1px dashed var(--border)}
+.sublabel{font-size:11px;color:var(--star);font-weight:800;letter-spacing:.04em;flex:none}
 .chip{
   --cc:var(--accent);
   display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border-radius:9px;
@@ -236,6 +240,7 @@ body.density-compact .card{padding:10px;gap:7px;border-radius:11px}
 .c-top{display:flex;align-items:flex-start;gap:10px}
 .c-cost{
   --co:var(--cc);
+  position:relative;
   flex:none;width:42px;height:42px;border-radius:50%;
   display:grid;place-items:center;
   background:radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--co) 45%, var(--surface-3)), color-mix(in srgb, var(--co) 22%, var(--surface-2)));
@@ -243,6 +248,17 @@ body.density-compact .card{padding:10px;gap:7px;border-radius:11px}
   text-shadow:0 1px 1px rgba(0,0,0,.5);
   box-shadow:inset 0 -3px 6px rgba(0,0,0,.35), 0 0 0 3px color-mix(in srgb, var(--co) 18%, transparent);
 }
+/* 辉星花费（Star cost）蓝色小圆圈，定位在能量圆右下角 */
+.c-star{
+  position:absolute;right:-7px;bottom:-7px;z-index:2;
+  width:22px;height:22px;border-radius:50%;
+  display:grid;place-items:center;
+  background:radial-gradient(circle at 30% 30%, #5b9cff, #1e5fd8);
+  border:1.5px solid #9cc2ff;color:#fff;font-weight:800;font-size:12px;line-height:1;
+  text-shadow:0 1px 1px rgba(0,0,0,.5);
+  box-shadow:inset 0 -2px 4px rgba(0,0,0,.35), 0 0 0 2px var(--surface-2);
+}
+.c-star.x{font-size:12px}
 .c-cost.x{background:radial-gradient(circle at 30% 30%, #6b4a17, #2a1d0a);border-color:#c4a657;color:#ffe5a3;box-shadow:inset 0 -3px 6px rgba(0,0,0,.4), 0 0 0 3px rgba(196,166,87,.18)}
 body.density-compact .c-cost{width:36px;height:36px;font-size:16px}
 .c-cost.none{visibility:hidden}
@@ -382,12 +398,14 @@ html[data-theme="light"] .orb.en-P{background:radial-gradient(circle at 30% 30%,
 .ver-hd .t{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--text-mute);text-transform:uppercase}
 .ver.up .ver-hd .t{color:#f2c14e}
 .ver-hd .cost{
+  position:relative;
   margin-left:auto;flex:none;width:34px;height:34px;border-radius:50%;
   display:grid;place-items:center;font-weight:800;font-size:15px;color:#fff;
   background:radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--cc) 45%, var(--surface-3)), color-mix(in srgb, var(--cc) 22%, var(--surface-2)));
   border:1.5px solid var(--cc);box-shadow:inset 0 -3px 6px rgba(0,0,0,.35);
 }
 .ver-hd .cost.x{background:radial-gradient(circle at 30% 30%, #6b4a17, #2a1d0a);border-color:#c4a657;color:#ffe5a3}
+.ver-hd .cost .c-star{width:18px;height:18px;font-size:10.5px;right:-6px;bottom:-6px}
 .ver-desc{font-size:13.5px;line-height:1.6;color:var(--text);display:flex;flex-direction:column;gap:3px}
 .ver-desc .ln{display:block}
 .diff-add{color:var(--num-dmg);background:color-mix(in srgb, var(--num-dmg) 14%, transparent);padding:0 3px;border-radius:3px}
@@ -713,7 +731,7 @@ footer b{color:var(--text-dim)}
         <div class="fgroup" data-page-node-id="hL7oHk1LugGqwuCoOvTgPn"><span class="flabel" data-page-node-id="Y0kFZumteGmQxW42FbwnM1">角色</span><div class="chips" id="fChar" data-page-node-id="veyW7Olncdiesx034pXHVH"></div></div>
         <div class="fgroup" data-page-node-id="MLQ69ljejQOusn71PB60CW"><span class="flabel" data-page-node-id="O2QCeRMqzSwqsmZOVHEbss">类型</span><div class="chips" id="fType" data-page-node-id="xClIUREFHh0XXUa9Uz7Efm"></div></div>
         <div class="fgroup" data-page-node-id="eCTkUmF64gJDENx1hux7Sh"><span class="flabel" data-page-node-id="FND74YPMQHmR27rO7RU3sU">稀有度</span><div class="chips" id="fRare" data-page-node-id="DnYfDKEMMY1wFxzTlxCeq2"></div></div>
-        <div class="fgroup" data-page-node-id="F5W07LV52WyX1MSUOhNVlx"><span class="flabel" data-page-node-id="7ZEQ1HUGMHVIcD8anhlhKY">费用</span><div class="chips" id="fCost" data-page-node-id="xliqO4T8q6qjrbSCq7iMDP"></div></div>
+        <div class="fgroup" data-page-node-id="F5W07LV52WyX1MSUOhNVlx"><span class="flabel" data-page-node-id="7ZEQ1HUGMHVIcD8anhlhKY">费用</span><div class="chips" id="fCost" data-page-node-id="xliqO4T8q6qjrbSCq7iMDP"></div><div class="subfilter"><span class="sublabel">辉星花费</span><div class="chips" id="fStar"></div></div></div>
         <div class="fgroup" data-page-node-id="iGgefYwRfmuWyDJFPMfSzg"><span class="flabel" data-page-node-id="rX6EE9J9fgMlA2k9dD0Ynt">更多</span><div class="chips" id="fMore" data-page-node-id="DUALZm8dYry9HgHxPPf3kt"></div></div>
       </div>
 
