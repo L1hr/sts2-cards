@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: sts2-cards
+    runtime: node
+    plan: free
+    region: oregon
+    branch: main
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/quiz/info
+    envVars:
+      - key: NODE_VERSION
+        value: "20"

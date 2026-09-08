@@ -1,0 +1,17 @@
+{
+  "name": "sts2-cards",
+  "version": "1.0.0",
+  "private": true,
+  "description": "杀戮尖塔2 卡牌图鉴 + 卡名接龙对战",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "pinyin-pro": "^3.29.3",
+    "ws": "^8.21.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.5.0"
+  }
+}

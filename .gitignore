@@ -1,0 +1,6 @@
+node_modules/
+.workbuddy/
+*.log
+.DS_Store
+_art.json
+_basic_art.json
