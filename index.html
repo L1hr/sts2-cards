@@ -978,9 +978,15 @@ footer b{color:var(--text-dim)}
 <script src="data.js"></script>
 <script src="pinyin-map.js"></script>
 <script src="app.js"></script>
+<div id="wake" style="position:fixed;inset:0;z-index:9999;display:none;place-items:center;background:var(--bg,#0f1115);color:#cfd6e4;font:600 15px/1.7 system-ui,sans-serif;text-align:center;padding:24px">
+  <div>⏳ 正在启动服务，请稍候…<br><span style="font-weight:400;color:#8a93a6;font-size:13px">（首次访问免费主机冷启动约需 30–60 秒）</span></div>
+</div>
 <script>
-/* 自愈引导：若核心脚本因网关 502 未加载成功，自动重试（带缓存击穿参数），避免整页空白 */
+/* 自愈引导：核心脚本未加载成功时自动重试（带缓存击穿参数 + 冷启动耐心等待），避免整页空白 */
 (function(){
+  var wake = document.getElementById('wake');
+  function showWake(){ if(wake) wake.style.display = 'grid'; }
+  function hideWake(){ if(wake) wake.style.display = 'none'; }
   function retryScript(src){
     var old = document.querySelector('script[src="'+src+'"]');
     if(old) old.remove();
@@ -989,16 +995,17 @@ footer b{color:var(--text-dim)}
     document.body.appendChild(s);
   }
   function check(){
-    if(window.__APP_OK) return;
+    if(window.__APP_OK){ hideWake(); return; }
     var t = +(sessionStorage.getItem('appRetry')||0);
-    if(t >= 8) return;
+    if(t >= 15){ if(wake) wake.innerHTML = '😵 启动超时，请<a href="?" style="color:#5b9cff">点击刷新</a>重试'; return; }
     sessionStorage.setItem('appRetry', t+1);
+    showWake();
     retryScript("data.js");
     retryScript("pinyin-map.js");
     retryScript("app.js");
-    setTimeout(check, 1500);
+    setTimeout(check, 4000);
   }
-  window.addEventListener('load', function(){ setTimeout(check, 2000); });
+  window.addEventListener('load', function(){ setTimeout(check, 1500); });
 })();
 </script>
 </body>
