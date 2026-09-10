@@ -101,7 +101,7 @@ function gitOut(args) {
 
   console.log('[5/6] 创建提交…');
   const newCommit = await req('POST', `/repos/${OWNER}/${REPO}/git/commits`, {
-    message: '数据层改造 + Koyeb/Neon 部署准备（db.js 双模式、Dockerfile、部署指南）',
+    message: '版本历史内联 + 召唤紫圈 + db 连接自愈与孤儿票清理',
     tree: newTree.sha,
     parents: [baseSha],
   });

@@ -667,6 +667,48 @@ footer b{color:var(--text-dim)}
   .qz-adm-actions .qz-sm,.qz-adm-actions input{max-width:none;width:100%}
 }
 
+/* ============ 卡牌版本历史（内联，避免 styles.css 未被加载导致无法折叠） ============ */
+.hist{
+  margin-top:16px;border:1px solid var(--border);border-radius:12px;
+  background:var(--surface-2);overflow:hidden;
+}
+.hist-hd{
+  width:100%;display:flex;align-items:center;gap:8px;cursor:pointer;
+  padding:11px 14px;background:none;border:0;color:var(--text);font:inherit;text-align:left;
+}
+.hist-hd:hover{background:var(--surface-3)}
+.hist-title{font-size:13px;font-weight:800;letter-spacing:.02em}
+.hist-count{
+  font-size:11px;color:var(--text-mute);background:var(--surface-3);
+  border:1px solid var(--border);border-radius:999px;padding:1px 8px;
+}
+.hist-arrow{margin-left:auto;color:var(--text-mute);display:flex;transition:transform .18s ease}
+.hist.open .hist-arrow{transform:rotate(180deg)}
+.hist-body{display:none;padding:0 14px 12px}
+.hist.open .hist-body{display:block}
+.hist-item{
+  padding:9px 0;border-top:1px dashed var(--border-soft);
+}
+.hist-item:first-child{border-top:0}
+.hist-meta{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap}
+.hist-ver{
+  font-size:11.5px;font-weight:800;color:var(--accent);
+  background:color-mix(in srgb, var(--accent) 12%, transparent);
+  border:1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  border-radius:6px;padding:1px 6px;font-variant-numeric:tabular-nums;
+}
+.hist-date{font-size:11px;color:var(--text-mute);font-variant-numeric:tabular-nums}
+.hist-kind{
+  font-size:11px;font-weight:700;border-radius:6px;padding:1px 7px;
+  border:1px solid currentColor;
+}
+.hist-kind.k-buff{color:#3fbf7f;background:color-mix(in srgb, #3fbf7f 13%, transparent)}
+.hist-kind.k-nerf{color:#e2654f;background:color-mix(in srgb, #e2654f 13%, transparent)}
+.hist-kind.k-rework{color:#9b7cf0;background:color-mix(in srgb, #9b7cf0 14%, transparent)}
+.hist-kind.k-change{color:#d9a13b;background:color-mix(in srgb, #d9a13b 14%, transparent)}
+.hist-kind.k-new{color:var(--accent);background:color-mix(in srgb, var(--accent) 13%, transparent)}
+.hist-txt{font-size:12.5px;line-height:1.65;color:var(--text-dim)}
+
 </style>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' data-page-node-id="DEnTdude7HblRFm17HsCzl"><rect width='64' height='64' rx='14' fill='%233d8bfd' data-page-node-id="jnJUfXDsWREP9M4pQBr1B1"/><text x='50%25' y='58%25' text-anchor='middle' font-family='-apple-system,Segoe UI,sans-serif' font-size='28' font-weight='800' fill='white' dominant-baseline='middle' data-page-node-id="nQaANNOe2zMNnDeXmZKMrd">S2</text></svg>">
 </head>
@@ -993,9 +1035,9 @@ footer b{color:var(--text-dim)}
   共 <b id="fTotal" data-page-node-id="jxKgBTvZtCIbd8PJMH0jtq">—</b> 张卡牌 · 抢先体验版本数据 · 非官方粉丝作品
 </footer>
 
-<script src="data.js"></script>
-<script src="pinyin-map.js"></script>
-<script src="app.js"></script>
+<script src="data.js?v=20260909e"></script>
+<script src="pinyin-map.js?v=20260909e"></script>
+<script src="app.js?v=20260909e"></script>
 <div id="wake" style="position:fixed;inset:0;z-index:9999;display:none;place-items:center;background:var(--bg,#0f1115);color:#cfd6e4;font:600 15px/1.7 system-ui,sans-serif;text-align:center;padding:24px">
   <div>⏳ 正在启动服务，请稍候…<br><span style="font-weight:400;color:#8a93a6;font-size:13px">（首次访问免费主机冷启动约需 30–60 秒）</span></div>
 </div>

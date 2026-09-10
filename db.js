@@ -13,7 +13,39 @@ const QUIZ_FILE = path.join(ROOT, 'quiz.txt');
 const VOTES_FILE = path.join(ROOT, 'quiz-votes.json');
 const ADMIN_FILE = path.join(ROOT, 'quiz-admin.json');
 
-const DATABASE_URL = process.env.DATABASE_URL || '';
+/* 连接串三个来源，按优先级：
+   1) 环境变量 DATABASE_URL（Koyeb 等平台注入）
+   2) 项目根目录 db-config.json  { "DATABASE_URL": "postgresql://..." }
+      —— 给不支持环境变量的托管（比如 WorkBuddy 发布）用；
+      该文件已加进 .gitignore，不会提交到公开仓库
+   3) 都没有 -> 文件模式
+*/
+function readUrlFromConfigFile() {
+  try {
+    const p = path.join(ROOT, 'db-config.json');
+    if (!fs.existsSync(p)) return '';
+    const j = JSON.parse(fs.readFileSync(p, 'utf8'));
+    return (j && j.DATABASE_URL) || '';
+  } catch (e) {
+    console.error('[db] 读取 db-config.json 失败：', e.message);
+    return '';
+  }
+}
+// 兜底来源：db-config.js（module.exports.DATABASE_URL）。
+// 原因：部署会把根目录 .json 清零，而 .js 文件部署可靠；用 .js 兜底可防凭证被清零导致永久 db:false。
+function readUrlFromJsConfig() {
+  try {
+    const p = path.join(ROOT, 'db-config.js');
+    if (!fs.existsSync(p)) return '';
+    const m = require(p);
+    return (m && m.DATABASE_URL) || '';
+  } catch (e) {
+    console.error('[db] 读取 db-config.js 失败：', e.message);
+    return '';
+  }
+}
+
+const DATABASE_URL = process.env.DATABASE_URL || readUrlFromConfigFile() || readUrlFromJsConfig();
 
 let pool = null;
 let usingDb = false;
@@ -93,16 +125,24 @@ async function loadVotesDb() {
   r.rows.forEach(x => { o[x.id] = [Number(x.a) || 0, Number(x.b) || 0]; });
   return o;
 }
+/* 全量同步：obj 里没有的 id 会被删掉，避免题目删除后票数残留 */
 async function persistVotesDb(obj) {
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
-    for (const k in obj) {
-      const v = obj[k];
-      if (!Array.isArray(v) || v.length < 2) continue;
-      await client.query(
-        'INSERT INTO quiz_votes (id,a,b) VALUES ($1,$2,$3) ON CONFLICT (id) DO UPDATE SET a=EXCLUDED.a,b=EXCLUDED.b',
-        [k, Number(v[0]) || 0, Number(v[1]) || 0]);
+    const ids = Object.keys(obj).filter(k => Array.isArray(obj[k]) && obj[k].length >= 2);
+    if (ids.length) {
+      // 删除已不在内存里的旧 id（题目被删除 / 题目文本被改动导致 id 变化）
+      const ph = ids.map((_, i) => '$' + (i + 1)).join(',');
+      await client.query('DELETE FROM quiz_votes WHERE id NOT IN (' + ph + ')', ids);
+      for (const k of ids) {
+        const v = obj[k];
+        await client.query(
+          'INSERT INTO quiz_votes (id,a,b) VALUES ($1,$2,$3) ON CONFLICT (id) DO UPDATE SET a=EXCLUDED.a,b=EXCLUDED.b',
+          [k, Number(v[0]) || 0, Number(v[1]) || 0]);
+      }
+    } else {
+      await client.query('DELETE FROM quiz_votes');
     }
     await client.query('COMMIT');
   } catch (e) { try { await client.query('ROLLBACK'); } catch (_) {} throw e; }
@@ -201,25 +241,76 @@ function setAdminPassFile(p) {
 }
 
 /* ---------------- 启动 / 统一接口 ---------------- */
+let watchdogTimer = null;
+let onDbUpCb = null;
+
+// 真正建立连接并初始化表（成功才置 usingDb=true）
+async function connectAndInit() {
+  const mod = require('@neondatabase/serverless');
+  pool = new mod.Pool({
+    connectionString: DATABASE_URL,
+    max: 5,
+    connectionTimeoutMillis: 10000,   // 放宽到 10s，容忍 Neon 冷启动唤醒
+    idleTimeoutMillis: 30000,
+  });
+  await pool.query('select 1');
+  usingDb = true;
+  await createTables();
+  await seedIfEmpty();
+  console.log('[db] 已连接 Neon Postgres，quiz 数据改为持久化');
+  if (onDbUpCb) { try { await onDbUpCb(); } catch (e) { console.error('[db] onDbUp 回调失败：', e.message); } }
+  return true;
+}
+
+// 启动：连接 Neon，失败重试（覆盖空闲挂起后的冷启动唤醒，实测唤醒约 1.7s）
 async function initDb() {
   if (!DATABASE_URL) { usingDb = false; return false; }
-  try {
-    const mod = require('@neondatabase/serverless');
-    pool = new mod.Pool({ connectionString: DATABASE_URL, max: 5 });
-    await pool.query('select 1');
-    usingDb = true;
-    await createTables();
-    await seedIfEmpty();
-    console.log('[db] 已连接 Neon Postgres，quiz 数据改为持久化');
-    return true;
-  } catch (e) {
-    console.error('[db] Neon 连接失败，回退文件存储：', e.message);
-    usingDb = false; pool = null;
-    return false;
+  let lastErr = '';
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    try {
+      await connectAndInit();
+      return true;
+    } catch (e) {
+      lastErr = e.message;
+      console.error(`[db] Neon 连接失败（第 ${attempt} 次重试）：`, e.message);
+      usingDb = false; pool = null;
+      if (attempt < 4) {
+        const wait = attempt * 1500;            // 1.5s / 3s / 4.5s 退避
+        await new Promise(r => setTimeout(r, wait));
+      }
+    }
   }
+  console.error('[db] Neon 连接 4 次均失败，回退文件存储。最后错误：', lastErr);
+  usingDb = false; pool = null;
+  return false;
+}
+
+// 看门狗：进程运行期内若 DB 掉线（如 Neon 中途不可达/被挂起），周期性重试自愈。
+// onDbUp 在恢复连接后回调（用于把内存票数/口令同步回 DB），避免 false 期间累计的数据丢失。
+function startWatchdog(onDbUp, intervalMs) {
+  onDbUpCb = onDbUp || null;
+  if (watchdogTimer) return;
+  const iv = intervalMs || 120000;            // 默认每 2 分钟探活一次
+  watchdogTimer = setInterval(async () => {
+    if (usingDb) {
+      try { await pool.query('select 1'); }   // 健康探活
+      catch (e) {
+        console.error('[db] 探活失败，标记离线，将在下次探活重试：', e.message);
+        usingDb = false; pool = null;
+      }
+      return;
+    }
+    if (!DATABASE_URL) return;                // 无凭证则保持文件模式
+    try {
+      await connectAndInit();
+      console.log('[db] 看门狗自愈成功，已恢复 Neon 持久化');
+    } catch (e) { /* 静默，下一轮再试 */ }
+  }, iv);
+  if (watchdogTimer.unref) watchdogTimer.unref();   // 看门狗不阻止进程退出
 }
 const api = {
   initDb,
+  startWatchdog,
   isDb: () => usingDb,
   loadQuiz: () => usingDb ? loadQuizDb() : loadQuizFile(),
   loadQuizRaw: async () => usingDb ? await loadQuizRawDb() : loadQuizRawFile(),

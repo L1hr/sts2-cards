@@ -1,0 +1,516 @@
+{
+ "meta": {
+  "game": "sts2",
+  "count": 41,
+  "changes": 53,
+  "note": "图鉴暂无遗物页面，数据先存着"
+ },
+ "relics": {
+  "Amethyst Aubergine": [
+   {
+    "ver": "0.100.0",
+    "date": "2026-03-20",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "Gold gain increased from 10 -> 15"
+   }
+  ],
+  "Book of Five Rings": [
+   {
+    "ver": "0.100.0",
+    "date": "2026-03-20",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "healing increased from 15 -> 20"
+   }
+  ],
+  "Bowler Hat": [
+   {
+    "ver": "0.100.0",
+    "date": "2026-03-20",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "Gold gain increased from 20% -> 25%"
+   }
+  ],
+  "Permafrost": [
+   {
+    "ver": "0.101.0",
+    "date": "2026-03-27",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "Rarity moved from Common -> Uncommon"
+   },
+   {
+    "ver": "0.100.0",
+    "date": "2026-03-20",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "Block gain increased from 6 -> 7"
+   }
+  ],
+  "Planisphere": [
+   {
+    "ver": "0.100.0",
+    "date": "2026-03-20",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "HP gain increased from 4 -> 5"
+   }
+  ],
+  "Stone Cracker": [
+   {
+    "ver": "0.100.0",
+    "date": "2026-03-20",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "now works in ALL combats but only upgrades 2 cards"
+   }
+  ],
+  "Neow's Leafy Poultice": [
+   {
+    "ver": "0.100.0",
+    "date": "2026-03-20",
+    "kind": "nerf",
+    "kindCn": "削弱",
+    "zh": "",
+    "en": "blessing's max HP loss increased from 10 -> 12"
+   }
+  ],
+  "Neow's Precarious Shears": [
+   {
+    "ver": "0.100.0",
+    "date": "2026-03-20",
+    "kind": "nerf",
+    "kindCn": "削弱",
+    "zh": "",
+    "en": "blessing's self-damage increased from 13 -> 16"
+   }
+  ],
+  "Tanx's Tri-Boomerang": [
+   {
+    "ver": "0.100.0",
+    "date": "2026-03-20",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "Instinct enchantment no longer reduces cost, instead doubles damage on enchanted Attacks"
+   }
+  ],
+  "Vakuu's Preserved Fog": [
+   {
+    "ver": "0.100.0",
+    "date": "2026-03-20",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "Cards removed decreased from 5 -> 3 Folly curse is now Ethereal"
+   }
+  ],
+  "Pendulum": [
+   {
+    "ver": "0.101.0",
+    "date": "2026-03-27",
+    "kind": "rework",
+    "kindCn": "重做",
+    "zh": "",
+    "en": "\"Common - Whenever you shuffle your Draw Pile, draw a card.\" -> \"Common - Every 3 turns, draw 1 card.\""
+   }
+  ],
+  "Tiny Mailbox": [
+   {
+    "ver": "0.101.0",
+    "date": "2026-03-27",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "Rarity moved from Common -> Uncommon Potions procured increased from 1 -> 2"
+   }
+  ],
+  "Bag of Marbles": [
+   {
+    "ver": "0.101.0",
+    "date": "2026-03-27",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "Rarity moved from Uncommon -> Common"
+   }
+  ],
+  "Red Mask rarity": [
+   {
+    "ver": "0.101.0",
+    "date": "2026-03-27",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "Rarity moved from Uncommon -> Common"
+   }
+  ],
+  "Bellows": [
+   {
+    "ver": "0.101.0",
+    "date": "2026-03-27",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "Rarity moved from Uncommon -> Rare"
+   }
+  ],
+  "Lasting Candy": [
+   {
+    "ver": "0.101.0",
+    "date": "2026-03-27",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "Rarity moved from Rare -> Uncommon"
+   }
+  ],
+  "Crossbow Tanx": [
+   {
+    "ver": "0.101.0",
+    "date": "2026-03-27",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "Now uses Free to Play instead of Costs 0 Energy"
+   }
+  ],
+  "Vexing Puzzlebox": [
+   {
+    "ver": "0.101.0",
+    "date": "2026-03-27",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "Now uses Free to Play instead of Costs 0 Energy (Now also only lasts until end of turn)"
+   }
+  ],
+  "History Course": [
+   {
+    "ver": "0.102.0",
+    "date": "2026-04-03",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "when it plays a copy of an X-cost card, it now uses your current energy for its X-value instead of the energy spent the last time the card was played. Note: It still plays the copy for free"
+   }
+  ],
+  "Nonupeipe's Fur Coat": [
+   {
+    "ver": "0.110.0",
+    "date": "2026-07-31",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "marked combats increased from 7 -> 8"
+   },
+   {
+    "ver": "0.102.0",
+    "date": "2026-04-03",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "now affects restocked Axebots and other enemies that enter combat during a fight"
+   }
+  ],
+  "new Neow": [
+   {
+    "ver": "0.107.1",
+    "date": "2026-06-19",
+    "kind": "new",
+    "kindCn": "新增",
+    "zh": "",
+    "en": "Kaleidoscope - \"Upon pickup, gain 2 card rewards with cards from other characters.\" Fishing Rod - \"Every 3 normal combats, Upgrade a random card in your Deck.\" Silken Tress - \"Enchant all cards in the first card reward with Glam. Upon pickup, lose all gold.\""
+   },
+   {
+    "ver": "0.105.0",
+    "date": "2026-05-08",
+    "kind": "new",
+    "kindCn": "新增",
+    "zh": "",
+    "en": "Kaleidoscope (temp name) - \"Upon pickup, gain 2 card rewards with cards from other characters.\" Fishing Rod - \"Every 3 normal combats, Upgrade a random card in your Deck.\" Silken Tress - \"Enchant all cards in the first card reward with Glam.\" Moved Tezcatara's Seal of Gold relic to option 3 so that it is in the same pool as Pumpkin Candle"
+   },
+   {
+    "ver": "0.103.0",
+    "date": "2026-04-10",
+    "kind": "new",
+    "kindCn": "新增",
+    "zh": "",
+    "en": "Neow's Bones: \"Upon pickup, gain 2 random Neow Relics. Add 1 random Curse to your Deck.\" Phial Holster: \"Upon pickup, gain 1 potion slot and procure 2 random potions.\" Winged Boots: \"You may ignore paths when choosing the next rooms to travel to 3 times.\""
+   }
+  ],
+  "Regalite": [
+   {
+    "ver": "0.111.0",
+    "date": "2026-08-14",
+    "kind": "nerf",
+    "kindCn": "削弱",
+    "zh": "",
+    "en": "Block gain decreased from 6 → 4"
+   },
+   {
+    "ver": "0.110.0",
+    "date": "2026-07-31",
+    "kind": "rework",
+    "kindCn": "重做",
+    "zh": "",
+    "en": "\"Whenever you create a card, gain 2 Block.\" -> \"The first time you create a card each turn, gain 6 Block.\""
+   },
+   {
+    "ver": "0.103.0",
+    "date": "2026-04-10",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "now grants Block for any card created, not just Colorless cards"
+   }
+  ],
+  "Neow's Booming Conch": [
+   {
+    "ver": "0.107.1",
+    "date": "2026-06-19",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "in addition to drawing extra cards, now gains 1 Energy at the start of Elite combats"
+   },
+   {
+    "ver": "0.104.0",
+    "date": "2026-04-24",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "in addition to drawing extra cards, now gains 1 Energy at the start of Elite combats"
+   }
+  ],
+  "Tezcatara's Nutritious Soup": [
+   {
+    "ver": "0.107.1",
+    "date": "2026-06-19",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "in addition to making your Strikes cost 0 and giving them Eternal, now makes all your Strikes deal 3 additional damage Moved Tezcatara's Seal of Gold relic to option 3 so it shares a pool with Pumpkin Candle"
+   },
+   {
+    "ver": "0.104.0",
+    "date": "2026-04-24",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "in addition to making your Strikes cost 0 and giving them Eternal, now makes all your Strikes deal 3 additional damage"
+   }
+  ],
+  "Infused Core": [
+   {
+    "ver": "0.107.1",
+    "date": "2026-06-19",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "now also grants \"Lightning Orbs deal 1 additional damage\""
+   },
+   {
+    "ver": "0.105.0",
+    "date": "2026-05-08",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "now also gains \"Lighting Orbs deal 1 additional damage.\""
+   }
+  ],
+  "Neow's Scroll Boxes Silken Tress": [
+   {
+    "ver": "0.106.0",
+    "date": "2026-05-22",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "swapped downsides and pools"
+   }
+  ],
+  "Mummified Hand": [
+   {
+    "ver": "0.106.0",
+    "date": "2026-05-22",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "now randomly chooses cards in a way that's more favorable to the player Priority 1 is cards that currently cost 1+ AND with a base cost of 1+ before any current cost modifications Priority 2 is cards that currently cost 1+ regardless of base cost Priority 3 is cards with a base cost of 1+ that have been temporarily modified to cost 0 If none of these priorities match, a completely random card in the player's hand is chosen"
+   }
+  ],
+  "Boot": [
+   {
+    "ver": "0.107.1",
+    "date": "2026-06-19",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "damage increase now also applies to Osty's attacks"
+   },
+   {
+    "ver": "0.107.0",
+    "date": "2026-06-04",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "damage increase now also applies to Osty's attacks"
+   }
+  ],
+  "Tezcatara's Pumpkin Candle": [
+   {
+    "ver": "0.107.1",
+    "date": "2026-06-19",
+    "kind": "rework",
+    "kindCn": "重做",
+    "zh": "",
+    "en": "now extinguishes after 5 combats and can be Kindled at rest sites (was: extinguishes at the start of Act 3)"
+   }
+  ],
+  "Neow's Scroll Boxes": [
+   {
+    "ver": "0.107.1",
+    "date": "2026-06-19",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "no longer makes player lose all gold"
+   }
+  ],
+  "Pael's Eye": [
+   {
+    "ver": "0.107.1",
+    "date": "2026-06-19",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "if an enemy has Vulnerable and you take an extra turn, the enemy's Vulnerable no longer decrements before your extra turn (also applies to Frail, Intangible, Weak, and other powers that decrement at the end of the enemy's turn)"
+   }
+  ],
+  "Divine Destiny": [
+   {
+    "ver": "0.108.0",
+    "date": "2026-07-03",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "Star gain increased from 6 → 7"
+   }
+  ],
+  "Nonupeipe's Diamond Diadem": [
+   {
+    "ver": "0.109.0",
+    "date": "2026-07-17",
+    "kind": "rework",
+    "kindCn": "重做",
+    "zh": "",
+    "en": "\"Whenever you play 2 or fewer cards in a turn, take half damage from enemies.\" -> \"Start combat with 20 Block. Block is not removed at the start of your next turn.\" Moved Orobos' Sand Castle relic moved from Pool 1 -> Pool 2 (second option instead of first option) Changed up Darv blessing pools for more variety (will see Energy relics more often)"
+   }
+  ],
+  "Tanx's Meat Cleaver": [
+   {
+    "ver": "0.109.0",
+    "date": "2026-07-17",
+    "kind": "nerf",
+    "kindCn": "削弱",
+    "zh": "",
+    "en": "HP gain decreased from 9 -> 5"
+   }
+  ],
+  "Tezcatara's Toybox": [
+   {
+    "ver": "0.109.0",
+    "date": "2026-07-17",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "relics gained increased from 4 -> 5"
+   }
+  ],
+  "Vakuu's Fiddle": [
+   {
+    "ver": "0.110.0",
+    "date": "2026-07-31",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "card draw decreased again from 3 -> 2"
+   },
+   {
+    "ver": "0.109.0",
+    "date": "2026-07-17",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "card draw increased from 2 -> 3"
+   }
+  ],
+  "Vakuu's Sere Talon and Distinguished Cape": [
+   {
+    "ver": "0.109.0",
+    "date": "2026-07-17",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "swapped downsides"
+   }
+  ],
+  "Tezcatara's Toasty Mittens": [
+   {
+    "ver": "0.110.0",
+    "date": "2026-07-31",
+    "kind": "rework",
+    "kindCn": "重做",
+    "zh": "",
+    "en": "\"At the start of your turn, Exhaust the top card of your Draw Pile and gain 1 Strength.\" -> \"At the start of your turn, Exhaust 1 card from your Hand and gain 1 Strength.\""
+   }
+  ],
+  "Tezcatara's Seal of Gold": [
+   {
+    "ver": "0.110.0",
+    "date": "2026-07-31",
+    "kind": "buff",
+    "kindCn": "增强",
+    "zh": "",
+    "en": "Gold loss decreased from 5 -> 3"
+   }
+  ],
+  "Nonupeipe's Beautiful Bracelet": [
+   {
+    "ver": "0.111.0",
+    "date": "2026-08-14",
+    "kind": "nerf",
+    "kindCn": "削弱",
+    "zh": "",
+    "en": "now Enchants 4 random cards instead of allowing you to select the cards to Enchant"
+   },
+   {
+    "ver": "0.110.0",
+    "date": "2026-07-31",
+    "kind": "change",
+    "kindCn": "调整",
+    "zh": "",
+    "en": "Cards enchanted increased from 3 -> 4 Swift amount decreased from 3 -> 2"
+   }
+  ],
+  "Nonupeipe's Signet Ring": [
+   {
+    "ver": "0.110.0",
+    "date": "2026-07-31",
+    "kind": "nerf",
+    "kindCn": "削弱",
+    "zh": "",
+    "en": "Gold decreased from 999 -> 888"
+   }
+  ]
+ }
+}

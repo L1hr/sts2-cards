@@ -128,15 +128,45 @@ function markVotes() {
   if (votesTimer) return;
   votesTimer = setTimeout(() => { votesTimer = null; if (votesDirty) { votesDirty = false; saveVotes(); } }, 1500);
 }
-function totalVotes() {
+// 传 list 时只统计当前题库里还存在的题（孤儿票数不计入显示）
+function totalVotes(list) {
   let t = 0;
-  for (const k in VOTES) { const v = VOTES[k]; t += (v[0] || 0) + (v[1] || 0); }
+  const ids = list ? new Set(list.map(q => q.id)) : null;
+  for (const k in VOTES) {
+    if (ids && !ids.has(k)) continue;
+    const v = VOTES[k]; t += (v[0] || 0) + (v[1] || 0);
+  }
   return t;
+}
+// 清理孤儿票数：题目已从题库删除（或题面被改动导致 id 变化）后，其投票记录一并删除
+// 返回 { removed: 题数, votes: 被清掉的票数 }
+async function pruneVotes(list, reason) {
+  if (!list || !list.length) return { removed: 0, votes: 0 };
+  const ids = new Set(list.map(q => q.id));
+  let removed = 0, lost = 0;
+  const detail = [];
+  for (const k of Object.keys(VOTES)) {
+    if (ids.has(k)) continue;
+    const v = VOTES[k] || [0, 0];
+    lost += (v[0] || 0) + (v[1] || 0);
+    detail.push(k + '(' + (v[0] || 0) + '/' + (v[1] || 0) + ')');
+    delete VOTES[k];
+    removed++;
+  }
+  if (removed) {
+    console.log('[quiz] ' + (reason || '清理') + '：移除 ' + removed + ' 道已删除题目的票数（共 ' + lost + ' 次选择）' +
+      '，明细 ' + detail.slice(0, 10).join(', ') + (detail.length > 10 ? ' …' : ''));
+    try { await db.persistVotes(VOTES); }
+    catch (e) { console.error('[quiz] 清理孤儿票数后持久化失败：', e.message); }
+  }
+  return { removed, votes: lost };
 }
 // 启动：初始化数据库（若有 DATABASE_URL），加载投票并同步后台口令
 (async () => {
   try { await db.initDb(); } catch (e) { console.error('[db] init 异常：', e.message); }
   try { await loadVotes(); } catch (e) { VOTES = {}; console.error('[quiz] 载入投票失败：', e.message); }
+  // 启动自检：题库里已经没有的题，票数据一并清掉（含历史上残留的孤儿票）
+  try { await pruneVotes(await db.loadQuiz(), '启动自检'); } catch (e) { console.error('[quiz] 启动自检清理票数失败：', e.message); }
   if (db.isDb()) {
     try {
       const dbp = await db.getAdminPass();
@@ -145,6 +175,15 @@ function totalVotes() {
       console.log('[quiz-admin] 口令来源：Neon 数据库');
     } catch (e) { console.error('[quiz-admin] DB 口令同步失败：', e.message); }
   }
+  // 看门狗：运行期若 Neon 掉线/被挂起，自动重试自愈；恢复后把内存票数回写 DB、同步口令，
+  // 避免 db:false 期间累计的投票在恢复时被丢弃。
+  db.startWatchdog(async () => {
+    try { await db.persistVotes(VOTES); } catch (e) { console.error('[db] 自愈回写票数失败：', e.message); }
+    try {
+      const dbp = await db.getAdminPass();
+      if (dbp) ADMIN_PASS = dbp; else await db.setAdminPass(ADMIN_PASS);
+    } catch (e) { console.error('[db] 自愈同步口令失败：', e.message); }
+  });
 })();
 
 /* -----------------------------------------------------------
@@ -215,7 +254,7 @@ function readBody(req) {
 async function handleApi(req, res, urlPath) {
   if (urlPath === '/api/quiz/info') {
     const list = await db.loadQuiz();
-    return sendJSON(res, { ok: true, count: list.length, votes: totalVotes(), ids: list.map(q => q.id) });
+    return sendJSON(res, { ok: true, count: list.length, votes: totalVotes(list), ids: list.map(q => q.id), db: db.isDb() });
   }
   if (urlPath === '/api/quiz/next') {
     const list = await db.loadQuiz();
@@ -276,8 +315,9 @@ async function handleApi(req, res, urlPath) {
     if (urlPath === '/api/quiz/admin/load') {
       let raw = '';
       try { raw = await db.loadQuizRaw(); } catch (_) { }
+      const cur = await db.loadQuiz();
       const { list, bad } = parseQuizText(raw);
-      return sendJSON(res, { ok: true, raw, count: list.length, bad, votes: totalVotes(), mtime: 0 });
+      return sendJSON(res, { ok: true, raw, count: list.length, bad, votes: totalVotes(cur), mtime: 0 });
     }
 
     // 保存题库（覆盖写；先备份再原子替换）
@@ -286,7 +326,11 @@ async function handleApi(req, res, urlPath) {
       const res2 = await db.saveQuizRaw(raw);
       if (!res2.ok) return sendJSON(res, { ok: false, msg: (res2.msg || '没有识别到任何有效题目，已取消保存') }, 400);
       const after = await db.loadQuiz();
-      return sendJSON(res, { ok: true, count: after.length, bad: res2.bad, votes: totalVotes(), msg: '已保存，当前共 ' + after.length + ' 题' });
+      // 题目被删掉后，它的票数要一起清掉，否则累计票数不会变少
+      const p = await pruneVotes(after, '题库保存');
+      let msg = '已保存，当前共 ' + after.length + ' 题';
+      if (p.removed) msg += '；同时清除了 ' + p.removed + ' 道已删除题目的 ' + p.votes + ' 次选择';
+      return sendJSON(res, { ok: true, count: after.length, bad: res2.bad, votes: totalVotes(after), pruned: p.removed, prunedVotes: p.votes, bak: !db.isDb(), msg });
     }
 
     // 修改口令
@@ -319,9 +363,15 @@ async function handleApi(req, res, urlPath) {
           n++;
         }
         try { await db.persistVotes(VOTES); } catch (e) { console.error('[quiz] 导入票数失败：', e.message); }
-        return sendJSON(res, { ok: true, msg: '已导入 ' + n + ' 道题的票数', votes: totalVotes() });
+        const cur = await db.loadQuiz();
+        // 导入的票数里若含已删除题目的 id，顺手清掉，避免出现"显示不变少"的孤儿票
+        const p = await pruneVotes(cur, '导入票数');
+        let msg = '已导入 ' + n + ' 道题的票数';
+        if (p.removed) msg += '；其中 ' + p.removed + ' 道题已不在题库，' + p.votes + ' 次选择未计入';
+        return sendJSON(res, { ok: true, msg, votes: totalVotes(cur) });
       }
-      return sendJSON(res, { ok: true, data: JSON.stringify(VOTES), votes: totalVotes() });
+      const cur2 = await db.loadQuiz();
+      return sendJSON(res, { ok: true, data: JSON.stringify(VOTES), votes: totalVotes(cur2) });
     }
 
     return sendJSON(res, { ok: false, msg: '未知的后台接口' }, 404);
@@ -348,7 +398,7 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream', 'Content-Encoding': 'gzip', 'Content-Length': gz.length, 'Connection': 'close' });
       res.end(gz);
     } else {
-      const headers = { 'Content-Type': MIME[ext] || 'application/octet-stream', 'Connection': 'close' };
+      const headers = { 'Content-Type': MIME[ext] || 'application/octet-stream', 'Connection': 'close', 'Cache-Control': 'no-cache, must-revalidate' };
       if (Buffer.isBuffer(data)) headers['Content-Length'] = data.length;
       res.writeHead(200, headers);
       res.end(data);

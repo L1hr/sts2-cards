@@ -5,3 +5,15 @@ node_modules/
 _art.json
 _basic_art.json
 push-log.txt
+db-config.json
+db-config.js
+_backup-live-votes.json
+_backup-live-quiz.txt
+_backup-db-votes-20260909.json
+
+# 版本历史构建中间产物（可由脚本从 Steam 补丁重新生成，非源）
+_patch_items.json
+_matched.json
+_unmatched.json
+_todo_translate.json
+_translated.json

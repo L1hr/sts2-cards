@@ -1,0 +1,2073 @@
+{
+ "meta": {
+  "game": "sts1",
+  "source": "Steam 官方补丁说明 (Slay the Spire, appid 646570)",
+  "versions": [
+   "1.1",
+   "2.0",
+   "2.2",
+   "WP1",
+   "WP10",
+   "WP12",
+   "WP16",
+   "WP17",
+   "WP18",
+   "WP19",
+   "WP20",
+   "WP21",
+   "WP23",
+   "WP24",
+   "WP25",
+   "WP28",
+   "WP29",
+   "WP3",
+   "WP30",
+   "WP33",
+   "WP34",
+   "WP36",
+   "WP37",
+   "WP39",
+   "WP4",
+   "WP40",
+   "WP44",
+   "WP46",
+   "WP47",
+   "WP49",
+   "WP5",
+   "WP50",
+   "WP51",
+   "WP55",
+   "WP56",
+   "WP6",
+   "WP7",
+   "WP9"
+  ],
+  "updated": "2026-09-09",
+  "count": 110,
+  "changes": 184
+ },
+ "cards": {
+  "AccuracyG": {
+   "cn": "精准",
+   "list": [
+    {
+     "ver": "WP51",
+     "date": "2018-12-07",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在能正确作用于由「混乱」「浩劫」等卡从牌堆顶打出的飞刀",
+     "en": "now correctly works with Shivs played from the top of the deck via cards like Mayhem or Havoc."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 3 提升至 4",
+     "en": "buffed. Damage increased from 3 -> 4."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 5 提升至 6",
+     "en": "buffed. Damage increased from 5 -> 6."
+    }
+   ]
+  },
+  "AggregateB": {
+   "cn": "汇集",
+   "list": [
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "充能间隔从每 6 张牌缩短为每 4 张牌（更频繁获得能量）",
+     "en": "buffed. Energy gained every 6 -> 4 cards."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "充能间隔从每 5 张牌缩短为每 3 张牌（更频繁获得能量）",
+     "en": "buffed. Energy gained every 5 -> 3 cards."
+    }
+   ]
+  },
+  "BladeDanceG": {
+   "cn": "刀刃之舞",
+   "list": [
+    {
+     "ver": "WP36",
+     "date": "2018-08-03",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "稀有度从罕见下调为普通",
+     "en": "rarity lowered from Uncommon -> Common."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "飞刀数量从 2 提升至 3",
+     "en": "buffed. 2 -> 3 shivs."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "飞刀数量从 3 提升至 4",
+     "en": "buffed. 3 -> 4 shivs."
+    }
+   ]
+  },
+  "BloodlettingR": {
+   "cn": "放血",
+   "list": [
+    {
+     "ver": "WP4",
+     "date": "2017-12-15",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "整体改动",
+     "en": "buffed."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "获得能量从 1 提升至 2",
+     "en": "buffed. Energy gain increased from 1 -> 2."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "获得能量从 2 提升至 3",
+     "en": "buffed. Energy gain increased from 2 -> 3."
+    }
+   ]
+  },
+  "DramaticEntrance": {
+   "cn": "闪亮登场",
+   "list": [
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 6 提升至 8",
+     "en": "buffed. Damage increased from 6 -> 8."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 8 提升至 12",
+     "en": "buffed. Damage increased from 8 -> 12."
+    }
+   ]
+  },
+  "EviscerateG": {
+   "cn": "内脏切除",
+   "list": [
+    {
+     "ver": "WP25",
+     "date": "2018-05-17",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在被「停滞」能力退回时消耗正确",
+     "en": "now has correct cost when returned from Stasis power."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 6 提升至 7",
+     "en": "buffed. Damage increased from 6 -> 7."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 8 提升至 9",
+     "en": "buffed. Damage increased from 8 -> 9."
+    }
+   ]
+  },
+  "GoodInstincts": {
+   "cn": "优秀直觉",
+   "list": [
+    {
+     "ver": "WP46",
+     "date": "2018-10-19",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "格挡从 4 提升至 5（+ 升级版从 7 提升至 8）",
+     "en": "buff: 4 -> 5 Block. Good Instincts+: 7 -> 8 Block."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "格挡从 5 提升至 6",
+     "en": "buffed. Block increased from 5 -> 6."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "格挡从 8 提升至 9",
+     "en": "buffed. Block increased from 8 -> 9."
+    }
+   ]
+  },
+  "HemokinesisR": {
+   "cn": "御血术",
+   "list": [
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 14 提升至 15",
+     "en": "buffed. Damage increased from 14 -> 15."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "生命值损失从 3 降至 2",
+     "en": "buffed. HP loss decreased from 3 -> 2."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 18 提升至 20",
+     "en": "buffed. Damage increased from 18 -> 20."
+    }
+   ]
+  },
+  "PhantasmalKillerG": {
+   "cn": "幻影杀手",
+   "list": [
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "消耗从 2 降至 1",
+     "en": "buffed. Cost reduced from 2 -> 1."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "消耗从 1 降至 0",
+     "en": "buffed. Cost reduced from 1 -> 0."
+    }
+   ]
+  },
+  "ReflexG": {
+   "cn": "本能反应",
+   "list": [
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "抽牌数从 1 提升至 2",
+     "en": "buffed. Card draw increased from 1 -> 2."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "抽牌数从 2 提升至 3",
+     "en": "buffed. Card draw increased from 2 -> 3."
+    }
+   ]
+  },
+  "ReprogramB": {
+   "cn": "重编程",
+   "list": [
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "专注损失从 2 降至 1",
+     "en": "Focus loss decreased from 2 -> 1."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "专注损失, 力量, and 敏捷 改为从 1 提升至 2",
+     "en": "changed. Focus loss, Strength, and Dexterity changed from 1 -> 2."
+    },
+    {
+     "ver": "2.0",
+     "date": "2020-01-14",
+     "kind": "rework",
+     "kindCn": "重做",
+     "zh": "整体改动",
+     "en": "reworked."
+    }
+   ]
+  },
+  "RuptureR": {
+   "cn": "撕裂",
+   "list": [
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "力量获得从 1 提升至 2",
+     "en": "buffed. Strength gain increased from 1 -> 2."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "能量消耗从 0 提升至 1",
+     "en": "nerfed. Energy cost 0 -> 1."
+    }
+   ]
+  },
+  "SadisticNature": {
+   "cn": "残虐天性",
+   "list": [
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 3 提升至 5",
+     "en": "buffed. Damage increased from 3 -> 5."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 4 提升至 7",
+     "en": "buffed. Damage increased from 4 -> 7."
+    }
+   ]
+  },
+  "ScrapeB": {
+   "cn": "刮削",
+   "list": [
+    {
+     "ver": "WP37",
+     "date": "2018-08-10",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "与「孤注一掷」等卡现在能正确作用于那些在使用前将消耗设为 0 的卡",
+     "en": "and All For One cards now correctly work with cards that set cost to 0 until played."
+    },
+    {
+     "ver": "WP23",
+     "date": "2018-05-04",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "优化了描述文字",
+     "en": "wording improvements."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "抽牌数从 3 张提升至 4 张",
+     "en": "draws 3 -> 4 cards."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 9 提升至 10",
+     "en": "buffed. Damage increased from 9 -> 10."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "抽牌数从 4 张提升至 5 张",
+     "en": "draws 4 -> 5 cards."
+    }
+   ]
+  },
+  "SliceG": {
+   "cn": "切割",
+   "list": [
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 5 提升至 6",
+     "en": "buffed. Damage increased from 5 -> 6."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 8 提升至 9",
+     "en": "buffed. Damage increased from 8 -> 9."
+    }
+   ]
+  },
+  "SneakyStrikeG": {
+   "cn": "隐秘打击",
+   "list": [
+    {
+     "ver": "WP21",
+     "date": "2018-04-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 8 提升至 10（+ 升级版从 12 提升至 14）",
+     "en": "buff. 8 -> 10 damage. Upgraded: 12 -> 14 damage."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 10 提升至 12",
+     "en": "buffed. Damage increased from 10 -> 12."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 14 提升至 16",
+     "en": "buffed. Damage increased from 14 -> 16."
+    }
+   ]
+  },
+  "StormofSteelG": {
+   "cn": "钢铁风暴",
+   "list": [
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "消耗从 2 降至 1",
+     "en": "buffed. Cost lowered from 2 -> 1."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "消耗从 2 降至 1",
+     "en": "buffed. Cost lowered from 2 -> 1."
+    }
+   ]
+  },
+  "SwiftStrike": {
+   "cn": "迅捷打击",
+   "list": [
+    {
+     "ver": "WP46",
+     "date": "2018-10-19",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 5 提升至 6（+ 升级版从 8 提升至 9）",
+     "en": "buff: 5 -. 6 damage. Swift Strike+ buff: 8 -> 9 damage."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 6 提升至 7",
+     "en": "buffed. Damage increased from 6 -> 7."
+    },
+    {
+     "ver": "2.2",
+     "date": "2020-11-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 9 提升至 10",
+     "en": "buffed. Damage increased from 9 -> 10."
+    }
+   ]
+  },
+  "WeaveP": {
+   "cn": "迂回",
+   "list": [
+    {
+     "ver": "2.0",
+     "date": "2020-01-20",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "观者角色现已锁定该卡：第二批解锁内容包含一张已弃用的卡。若之前已解锁，开局时会重新解锁；实际上它本就是「外来影响」",
+     "en": "is now locked for the Watcher as the second set of unlocks contained a deprecated card. If this was unlocked previously, it will unlock when starting the game. Nope, apparently it's already Foreign Influence."
+    }
+   ]
+  },
+  "FireBreathingR": {
+   "cn": "火焰吐息",
+   "list": [
+    {
+     "ver": "2.0",
+     "date": "2020-01-14",
+     "kind": "rework",
+     "kindCn": "重做",
+     "zh": "整体改动",
+     "en": "reworked."
+    }
+   ]
+  },
+  "SeverSoulR": {
+   "cn": "断魂斩",
+   "list": [
+    {
+     "ver": "2.0",
+     "date": "2020-01-14",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 20 提升至 22",
+     "en": "buffed. Damage increased from 20 -> 22."
+    }
+   ]
+  },
+  "WellLaidPlansG": {
+   "cn": "计划妥当",
+   "list": [
+    {
+     "ver": "2.0",
+     "date": "2020-01-14",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "消耗从 0 提升至 1",
+     "en": "cost increased from 0 -> 1."
+    },
+    {
+     "ver": "1.1",
+     "date": "2019-07-01",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "结算速度略微提升",
+     "en": "plays slightly faster now."
+    }
+   ]
+  },
+  "BloodforBloodR": {
+   "cn": "以血还血",
+   "list": [
+    {
+     "ver": "WP18",
+     "date": "2018-03-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "数值从 16 提升至 18（+ 升级版从 18 提升至 22）",
+     "en": "buff. 16 -> 18. Upgraded: 18 -> 22."
+    },
+    {
+     "ver": "2.0",
+     "date": "2020-01-14",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "治疗效果从 10% 提升至 20%",
+     "en": "healing buffed from 10% -> 20%."
+    },
+    {
+     "ver": "2.0",
+     "date": "2020-01-14",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "稀有度从罕见改为普通",
+     "en": "rarity changed f rom Uncommon -> Common."
+    },
+    {
+     "ver": "1.1",
+     "date": "2019-07-01",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "治疗量从 10% 提升至 25%",
+     "en": "buffed to heal 10% -> 25%."
+    }
+   ]
+  },
+  "PoisonedStabG": {
+   "cn": "带毒刺击",
+   "list": [
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 5 提升至 6（+ 升级版从 6 提升至 8）",
+     "en": "buff: Damage 5 -> 6. Upgraded: 6 -> 8."
+    },
+    {
+     "ver": "2.0",
+     "date": "2020-01-14",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现为静默角色专属卡",
+     "en": "is now Silent only."
+    }
+   ]
+  },
+  "DropkickR": {
+   "cn": "飞身踢",
+   "list": [
+    {
+     "ver": "2.0",
+     "date": "2020-01-14",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在按描述顺序结算其效果",
+     "en": "now resolves its actions in order of its description."
+    }
+   ]
+  },
+  "HeelHookG": {
+   "cn": "足跟勾",
+   "list": [
+    {
+     "ver": "2.0",
+     "date": "2020-01-14",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在按描述顺序结算其效果",
+     "en": "now resolves its actions in order of its description."
+    },
+    {
+     "ver": "1.1",
+     "date": "2019-07-01",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害数量从 7 提升至 8",
+     "en": "buffed. 7 -> 8 damage."
+    }
+   ]
+  },
+  "BerserkR": {
+   "cn": "狂暴",
+   "list": [
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "消耗从 1 降至 0；升级现在使自身易伤从 3 点降至 2 点",
+     "en": "buff: Cost 1 -> 0. Upgrading now reduces Vulnerable from 3 -> 2."
+    },
+    {
+     "ver": "WP33",
+     "date": "2018-07-13",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "对自身的易伤改为 3 层（原为 5 层）",
+     "en": "buffed. Applies 3 Vulnerable to self instead of 5."
+    },
+    {
+     "ver": "WP1",
+     "date": "2017-11-25",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "整体改动",
+     "en": "buffed."
+    },
+    {
+     "ver": "1.1",
+     "date": "2019-07-01",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "自身易伤从 3 点降至 2 点",
+     "en": "buffed. Self Vulnerable 3 -> 2."
+    }
+   ]
+  },
+  "BullseyeB": {
+   "cn": "瞄准靶心",
+   "list": [
+    {
+     "ver": "1.1",
+     "date": "2019-07-01",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "锁定层数从 1 提升至 2",
+     "en": "buffed. Lock-On 1 -> 2."
+    },
+    {
+     "ver": "1.1",
+     "date": "2019-07-01",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 10 降至 11",
+     "en": "buffed. Damage 10 -> 11."
+    }
+   ]
+  },
+  "GrandFinaleG": {
+   "cn": "华丽收场",
+   "list": [
+    {
+     "ver": "WP46",
+     "date": "2018-10-19",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 40 提升至 50（+ 升级版从 50 提升至 60）",
+     "en": "buff: 40 -> 50 damage. Grand Finale+: 50 -> 60 damage."
+    },
+    {
+     "ver": "WP19",
+     "date": "2018-04-06",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "消耗从 1 降至 0",
+     "en": "buff. Cost 1 -> 0."
+    },
+    {
+     "ver": "1.1",
+     "date": "2019-07-01",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "在快速模式中结算速度提升 0.3 秒",
+     "en": "is now 0.3s faster in Fast Mode."
+    }
+   ]
+  },
+  "OfferingR": {
+   "cn": "祭品",
+   "list": [
+    {
+     "ver": "WP37",
+     "date": "2018-08-10",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "生命值损失从 5 提升至 6",
+     "en": "nerf: HP Loss increased from 5 -> 6."
+    },
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "自身伤害从 4 提升至 5",
+     "en": "nerf: Self damage increased from 4 -> 5."
+    },
+    {
+     "ver": "WP6",
+     "date": "2018-01-04",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "小幅改动：生命值损失现为 4；抽牌数升级从 3 提升至 5",
+     "en": "gets a minor change. HP Loss is now 4. Card draw upgrades from 3 -> 5."
+    },
+    {
+     "ver": "1.1",
+     "date": "2019-07-01",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "在快速模式中结算更快",
+     "en": "is now faster in Fast Mode."
+    }
+   ]
+  },
+  "SeekB": {
+   "cn": "搜寻",
+   "list": [
+    {
+     "ver": "WP23",
+     "date": "2018-05-04",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "辅助文字不再错误地提示可获得一张技能牌",
+     "en": "no longer incorrectly says to get a Skill in its helper text."
+    },
+    {
+     "ver": "1.1",
+     "date": "2019-07-01",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在按稀有度与字母顺序整理卡牌",
+     "en": "now organizes cards by rarity and alphabetically."
+    }
+   ]
+  },
+  "StaticDischargeB": {
+   "cn": "静电释放",
+   "list": [
+    {
+     "ver": "1.1",
+     "date": "2019-07-01",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在明确说明在受到未被格挡的攻击伤害时触发",
+     "en": "now clarifies that it triggers when you receive unblocked attack damage."
+    }
+   ]
+  },
+  "PiercingWailG": {
+   "cn": "尖啸",
+   "list": [
+    {
+     "ver": "WP56",
+     "date": "2019-01-18",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "在快速模式中结算速度提升 1.2 秒",
+     "en": "is now 1.2s faster with Fast Mode."
+    }
+   ]
+  },
+  "ReaperR": {
+   "cn": "死亡收割",
+   "list": [
+    {
+     "ver": "WP55",
+     "date": "2019-01-11",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "在持有「靴子」遗物时现在能正确治疗",
+     "en": "now heals the correct amount if the player has The Boot relic."
+    }
+   ]
+  },
+  "TheBomb": {
+   "cn": "炸弹",
+   "list": [
+    {
+     "ver": "WP55",
+     "date": "2019-01-11",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 30 提升至 40",
+     "en": "damage buffed from 30 -> 40."
+    },
+    {
+     "ver": "WP46",
+     "date": "2018-10-19",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "的增益图标现在能正确以蓝色显示数字",
+     "en": "'s buff icon now correctly displays numbers in blue."
+    }
+   ]
+  },
+  "Burn": {
+   "cn": "灼伤",
+   "list": [
+    {
+     "ver": "WP51",
+     "date": "2018-12-07",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "不再在回合结束时触发「吞时者」的被动",
+     "en": "no longer trigger Time Eater's ability at end of turn."
+    }
+   ]
+  },
+  "ReboundB": {
+   "cn": "弹回",
+   "list": [
+    {
+     "ver": "WP51",
+     "date": "2018-12-07",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "不再将「燃烧」置于牌堆顶",
+     "en": "no longer puts Burns on top of your deck."
+    },
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 8 提升至 9（+ 升级版从 11 提升至 12）",
+     "en": "buff: Damage 8 -> 9. Upgraded 11 -> 12."
+    }
+   ]
+  },
+  "Regret": {
+   "cn": "悔恨",
+   "list": [
+    {
+     "ver": "WP50",
+     "date": "2018-11-16",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "优化了描述文字，明确与「破裂」等卡的交互",
+     "en": "wording improved to clarify interactions with cards like Rupture."
+    }
+   ]
+  },
+  "MindBlast": {
+   "cn": "心灵震慑",
+   "list": [
+    {
+     "ver": "WP49",
+     "date": "2018-11-09",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在能正确作用于「受控混乱」模组",
+     "en": "now correctly works with Controlled Chaos mod."
+    },
+    {
+     "ver": "WP9",
+     "date": "2018-01-25",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在在卡牌上显示其将造成的伤害数值",
+     "en": "now shows you how much damage it will deal on the card itself."
+    }
+   ]
+  },
+  "RebootB": {
+   "cn": "重启",
+   "list": [
+    {
+     "ver": "WP47",
+     "date": "2018-10-25",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "「重启」与「深呼吸」卡不再使基于洗牌的遗物触发两次",
+     "en": "and Deep Breath cards no longer trigger shuffle-based relics twice."
+    },
+    {
+     "ver": "WP40",
+     "date": "2018-08-31",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "优化了描述文字",
+     "en": "wording update."
+    },
+    {
+     "ver": "WP37",
+     "date": "2018-08-10",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "数值从 5 降至 4（+ 升级版抽牌数从 7 降至 6）",
+     "en": "nerf: 5 -> 4. Reboot+ 7 -> 6 card draw."
+    }
+   ]
+  },
+  "FusionB": {
+   "cn": "聚变",
+   "list": [
+    {
+     "ver": "WP47",
+     "date": "2018-10-25",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "对模组开发者更友好",
+     "en": "works better for modders now"
+    }
+   ]
+  },
+  "DeflectG": {
+   "cn": "偏折",
+   "list": [
+    {
+     "ver": "WP46",
+     "date": "2018-10-19",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "格挡从 6 提升至 7",
+     "en": "buff: 6 -> 7 Block."
+    }
+   ]
+  },
+  "HandOfGreed": {
+   "cn": "贪婪之手",
+   "list": [
+    {
+     "ver": "WP46",
+     "date": "2018-10-19",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 15 提升至 20（+ 升级版从 20 提升至 25）",
+     "en": "buff: 15 -> 20 damage. Hand of Greed+: 20 -> 25 damage."
+    }
+   ]
+  },
+  "Forethought": {
+   "cn": "预谋",
+   "list": [
+    {
+     "ver": "WP46",
+     "date": "2018-10-19",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "优化了描述文字",
+     "en": "wording improvements."
+    }
+   ]
+  },
+  "Purity": {
+   "cn": "净化",
+   "list": [
+    {
+     "ver": "WP46",
+     "date": "2018-10-19",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "优化了描述文字",
+     "en": "wording improvements."
+    }
+   ]
+  },
+  "CorruptionR": {
+   "cn": "腐化",
+   "list": [
+    {
+     "ver": "WP44",
+     "date": "2018-10-04",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "与其他降低消耗的卡不再让「嬗变」「萎靡」等 X 费卡显示为消耗 0",
+     "en": "and other cost reducing cards no longer make X cost cards like Transmutation and Malaise display cost 0."
+    }
+   ]
+  },
+  "DarknessB": {
+   "cn": "漆黑",
+   "list": [
+    {
+     "ver": "WP40",
+     "date": "2018-08-31",
+     "kind": "rework",
+     "kindCn": "重做",
+     "zh": "重做：现在触发暗影宝珠的被动能力",
+     "en": "reworked. Now triggers the passive ability of your Dark Orbs."
+    },
+    {
+     "ver": "WP23",
+     "date": "2018-05-04",
+     "kind": "rework",
+     "kindCn": "重做",
+     "zh": "小幅重做",
+     "en": "slight rework."
+    }
+   ]
+  },
+  "FissionB": {
+   "cn": "裂变",
+   "list": [
+    {
+     "ver": "WP39",
+     "date": "2018-08-23",
+     "kind": "rework",
+     "kindCn": "重做",
+     "zh": "整体改动",
+     "en": "reworked."
+    }
+   ]
+  },
+  "MasterfulStabG": {
+   "cn": "精巧刺击",
+   "list": [
+    {
+     "ver": "WP39",
+     "date": "2018-08-23",
+     "kind": "rework",
+     "kindCn": "重做",
+     "zh": "整体改动",
+     "en": "reworked."
+    },
+    {
+     "ver": "WP28",
+     "date": "2018-06-07",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害获得小幅提升",
+     "en": "gets a minor damage buff."
+    }
+   ]
+  },
+  "JAX": {
+   "cn": "J.A.X.",
+   "list": [
+    {
+     "ver": "WP39",
+     "date": "2018-08-23",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "不再消耗",
+     "en": "buffed. No longer exhausts."
+    }
+   ]
+  },
+  "Enlightenment": {
+   "cn": "开悟",
+   "list": [
+    {
+     "ver": "WP37",
+     "date": "2018-08-10",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "is now 罕见 (was 稀有)",
+     "en": "is now Uncommon (was Rare)."
+    }
+   ]
+  },
+  "GlacierB": {
+   "cn": "冰川",
+   "list": [
+    {
+     "ver": "WP37",
+     "date": "2018-08-10",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "格挡从 8 降至 7（+ 升级版从 11 降至 10）",
+     "en": "nerf: 8 -> 7 Block. Glacier+ nerf: 11 -> 10 Block."
+    },
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "格挡从 9 降至 8（+ 升级版从 12 降至 11）",
+     "en": "nerf: Block 9 -> 8. Upgraded: 12 -> 11."
+    }
+   ]
+  },
+  "JuggernautR": {
+   "cn": "势不可当",
+   "list": [
+    {
+     "ver": "WP37",
+     "date": "2018-08-10",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "升级时的增益层数从 1 提升至 2",
+     "en": "buff: Upgrade amount 1 -> 2."
+    },
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 3 提升至 5（+ 升级版从 5 提升至 6）",
+     "en": "buff: Damage 3 -> 5. Upgraded 5 -> 6."
+    },
+    {
+     "ver": "WP3",
+     "date": "2017-12-08",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "削弱",
+     "en": "nerf."
+    }
+   ]
+  },
+  "LegSweepG": {
+   "cn": "扫腿",
+   "list": [
+    {
+     "ver": "WP37",
+     "date": "2018-08-10",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "格挡从 12 降至 11（+ 升级版从 15 降至 14）",
+     "en": "nerf: 12 -> 11 Block. Leg Sweep+ nerf: 15 -> 14 Block."
+    }
+   ]
+  },
+  "RitualDagger": {
+   "cn": "仪式匕首",
+   "list": [
+    {
+     "ver": "WP37",
+     "date": "2018-08-10",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 12 提升至 15",
+     "en": "buff: 12 -> 15."
+    },
+    {
+     "ver": "WP37",
+     "date": "2018-08-10",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "升级时增益量从 1 提升至 2",
+     "en": "buff: Upgrade amount 1 -> 2."
+    },
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "基础伤害 +3",
+     "en": "buff. Base damage +3."
+    },
+    {
+     "ver": "WP29",
+     "date": "2018-06-15",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "获得时现在会标记为已查看",
+     "en": "is marked as seen when you obtain it now."
+    }
+   ]
+  },
+  "Transmutation": {
+   "cn": "转化",
+   "list": [
+    {
+     "ver": "WP37",
+     "date": "2018-08-10",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "由「嬗变」获得的卡本回合消耗降至 0",
+     "en": "buffed. Cards acquired by Transmutation now cost 0 for the turn."
+    },
+    {
+     "ver": "WP12",
+     "date": "2018-02-16",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "不再额外给你一张免费卡",
+     "en": "no longer gives you a free card."
+    }
+   ]
+  },
+  "WraithFormG": {
+   "cn": "幽魂形态",
+   "list": [
+    {
+     "ver": "WP37",
+     "date": "2018-08-10",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "无形层数从 3 降至 2（+ 升级版从 4 降至 3）",
+     "en": "nerf: 3 -> 2 Intangible. Wraith Form+ nerf: 4 -> 3 Intangible."
+    }
+   ]
+  },
+  "ThunderStrikeB": {
+   "cn": "雷霆打击",
+   "list": [
+    {
+     "ver": "WP37",
+     "date": "2018-08-10",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "不再在没有任何已聚能的闪电时打出单发闪电",
+     "en": "no longer shoots a single lightning if you have channeled no Lightning."
+    }
+   ]
+  },
+  "LimitBreakR": {
+   "cn": "突破极限",
+   "list": [
+    {
+     "ver": "WP36",
+     "date": "2018-08-03",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在也会使负面力量翻倍",
+     "en": "now also doubles negative strength."
+    }
+   ]
+  },
+  "BallLightningB": {
+   "cn": "球状闪电",
+   "list": [
+    {
+     "ver": "WP36",
+     "date": "2018-08-03",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "升级版伤害从 4 降至 3",
+     "en": "nerf: Upgrade damage 4 -> 3."
+    }
+   ]
+  },
+  "AngerR": {
+   "cn": "愤怒",
+   "list": [
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 5 提升至 6（+ 升级版从 7 提升至 8）",
+     "en": "buff: 5 -> 6 damage. Upgraded 7 -> 8 damage."
+    },
+    {
+     "ver": "WP21",
+     "date": "2018-04-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害提升 1 点",
+     "en": "damage buffed by 1."
+    }
+   ]
+  },
+  "ExpertiseG": {
+   "cn": "独门技术",
+   "list": [
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "保留手牌上限从 8 张降至 7 张",
+     "en": "nerf: 8 -> 7 cards in hand."
+    }
+   ]
+  },
+  "HyperbeamB": {
+   "cn": "超能光束",
+   "list": [
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 25 提升至 26（+ 升级版从 32 提升至 34）",
+     "en": "buff: 25 -> 26 damage. Upgraded: 32 -> 34."
+    }
+   ]
+  },
+  "MalaiseG": {
+   "cn": "萎靡",
+   "list": [
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "is now 稀有 (was 罕见)",
+     "en": "is now Rare (was Uncommon)."
+    }
+   ]
+  },
+  "RampageR": {
+   "cn": "暴走",
+   "list": [
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "每回合力量增长从 4 提升至 5（升级版不变）",
+     "en": "'s ramp increased from 4 -> 5. No change to upgraded version."
+    }
+   ]
+  },
+  "TacticianG": {
+   "cn": "战术大师",
+   "list": [
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "is now 罕见",
+     "en": "is now Uncommon."
+    },
+    {
+     "ver": "WP3",
+     "date": "2017-12-08",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "获得增强",
+     "en": "buff."
+    }
+   ]
+  },
+  "UnloadG": {
+   "cn": "乾坤一掷",
+   "list": [
+    {
+     "ver": "WP34",
+     "date": "2018-07-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 12 提升至 14（+ 升级版从 16 提升至 18）",
+     "en": "buff: Damage 12 -> 14. Upgraded 16 -> 18."
+    }
+   ]
+  },
+  "HavocR": {
+   "cn": "破灭",
+   "list": [
+    {
+     "ver": "WP33",
+     "date": "2018-07-13",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在使用随机数选定随机目标（保证读档一致性）",
+     "en": "now utilizes RNG to select its random target (save/load consistency)."
+    },
+    {
+     "ver": "WP23",
+     "date": "2018-05-04",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "描述中「消耗」首字母未大写，已修正",
+     "en": "'s description: Exhaust was not capitalized."
+    },
+    {
+     "ver": "WP3",
+     "date": "2017-12-08",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在即使牌组为空也能打出（弃牌堆会洗回牌组）",
+     "en": "can now be played even when no cards are in your deck. (Discard will shuffle in)"
+    }
+   ]
+  },
+  "Normality": {
+   "cn": "凡庸",
+   "list": [
+    {
+     "ver": "WP33",
+     "date": "2018-07-13",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "提示文字不再使用错误措辞",
+     "en": "'s reminder text no longer uses incorrect wording."
+    }
+   ]
+  },
+  "Void": {
+   "cn": "虚空",
+   "list": [
+    {
+     "ver": "WP30",
+     "date": "2018-06-22",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "结算速度提升 0.25 秒",
+     "en": "now resolves 0.25s faster."
+    },
+    {
+     "ver": "WP18",
+     "date": "2018-03-30",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "不再使你的能量变为负数",
+     "en": "can no longer get you to negative energy."
+    }
+   ]
+  },
+  "GlassKnifeG": {
+   "cn": "玻璃刀刃",
+   "list": [
+    {
+     "ver": "WP24",
+     "date": "2018-05-10",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "描述：「玻璃刀刃的伤害」改为「这张卡牌的伤害」",
+     "en": "description: \"Glass Knife's damage\" -> \"This card's damage\""
+    },
+    {
+     "ver": "WP3",
+     "date": "2017-12-08",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "获得增强",
+     "en": "buff."
+    }
+   ]
+  },
+  "FinisherG": {
+   "cn": "终结技",
+   "list": [
+    {
+     "ver": "WP24",
+     "date": "2018-05-10",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "描述：「你已打出 2 张攻击牌」改为「已打出 2 张攻击牌」",
+     "en": "description:\"You have played 2 Attacks.\" -> \"2 Attacks played.\""
+    }
+   ]
+  },
+  "FeelNoPainR": {
+   "cn": "无惧疼痛",
+   "list": [
+    {
+     "ver": "WP23",
+     "date": "2018-05-04",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "升级增益从 +2 改为 +1",
+     "en": "nerfed: Upgrade is now +1 rather than +2."
+    },
+    {
+     "ver": "WP21",
+     "date": "2018-04-20",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "格挡从 4 降至 3（+ 升级版从 6 降至 5）",
+     "en": "nerf. 4 -> 3 block. Upgraded: 6 -> 5 Block."
+    }
+   ]
+  },
+  "TrueGritR": {
+   "cn": "坚毅",
+   "list": [
+    {
+     "ver": "WP23",
+     "date": "2018-05-04",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在随机数种子正确",
+     "en": "is now properly seeded."
+    }
+   ]
+  },
+  "EchoFormB": {
+   "cn": "回响形态",
+   "list": [
+    {
+     "ver": "WP23",
+     "date": "2018-05-04",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "改为虚无；升级移除虚无但保留 3 点消耗",
+     "en": "nerf: Ethereal. Upgrade removes Ethereal but retains 3 cost."
+    }
+   ]
+  },
+  "HelloWorldB": {
+   "cn": "你好，世界",
+   "list": [
+    {
+     "ver": "WP23",
+     "date": "2018-05-04",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "is now 罕见",
+     "en": "is now Uncommon."
+    }
+   ]
+  },
+  "MelterB": {
+   "cn": "熔化",
+   "list": [
+    {
+     "ver": "WP23",
+     "date": "2018-05-04",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 6 提升至 8（+ 升级版从 9 提升至 11）",
+     "en": "buffed: Damage 6 -> 8. Melter+: 9 -> 11."
+    }
+   ]
+  },
+  "UndoB": {
+   "cn": "均衡",
+   "list": [
+    {
+     "ver": "WP23",
+     "date": "2018-05-04",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "消耗降低 1 点",
+     "en": "gets buffed: Cost reduced by 1."
+    }
+   ]
+  },
+  "BlizzardB": {
+   "cn": "暴雪",
+   "list": [
+    {
+     "ver": "WP23",
+     "date": "2018-05-04",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "修正了描述",
+     "en": "description fix."
+    }
+   ]
+  },
+  "ForceFieldB": {
+   "cn": "力场",
+   "list": [
+    {
+     "ver": "WP23",
+     "date": "2018-05-04",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "原不受能力（脆弱/敏捷）影响，已修正",
+     "en": "was unaffected by Powers (Frail/Dex)."
+    }
+   ]
+  },
+  "WhiteNoiseB": {
+   "cn": "白噪声",
+   "list": [
+    {
+     "ver": "WP23",
+     "date": "2018-05-04",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在随机数种子正确",
+     "en": "is now properly seeded."
+    }
+   ]
+  },
+  "ImmolateR": {
+   "cn": "燔祭",
+   "list": [
+    {
+     "ver": "WP21",
+     "date": "2018-04-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "现在将「燃烧」加入弃牌堆而非抽牌堆",
+     "en": "buff: Adds a Burn to discard pile instead of draw pile."
+    },
+    {
+     "ver": "WP21",
+     "date": "2018-04-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 18 提升至 21",
+     "en": "buff: 18 -> 21 damage."
+    },
+    {
+     "ver": "WP21",
+     "date": "2018-04-20",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 24 提升至 28",
+     "en": "buff: 24 -> 28 damage."
+    }
+   ]
+  },
+  "RecklessChargeR": {
+   "cn": "无谋冲锋",
+   "list": [
+    {
+     "ver": "WP21",
+     "date": "2018-04-20",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "is now 罕见",
+     "en": "is now Uncommon."
+    },
+    {
+     "ver": "WP21",
+     "date": "2018-04-20",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "伤害 by 1",
+     "en": "nerfed damage by 1."
+    }
+   ]
+  },
+  "WildStrikeR": {
+   "cn": "狂野打击",
+   "list": [
+    {
+     "ver": "WP21",
+     "date": "2018-04-20",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "is now 普通",
+     "en": "is now Common."
+    },
+    {
+     "ver": "WP20",
+     "date": "2018-04-13",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "is now 罕见",
+     "en": "is now Uncommon."
+    }
+   ]
+  },
+  "CleaveR": {
+   "cn": "顺劈斩",
+   "list": [
+    {
+     "ver": "WP20",
+     "date": "2018-04-13",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 7 提升至 8（升级版 10 → 11）",
+     "en": "damage buff. 7 -> 8 (10 -> 11)."
+    }
+   ]
+  },
+  "CombustR": {
+   "cn": "自燃",
+   "list": [
+    {
+     "ver": "WP20",
+     "date": "2018-04-13",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 6 提升至 7",
+     "en": "damage buff. 6 -> 7."
+    },
+    {
+     "ver": "WP19",
+     "date": "2018-04-06",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 4 提升至 5",
+     "en": "buff. Damage 4 -> 5."
+    }
+   ]
+  },
+  "CarnageR": {
+   "cn": "残杀",
+   "list": [
+    {
+     "ver": "WP18",
+     "date": "2018-03-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "伤害从 18 提升至 20（+ 升级版从 26 提升至 28）",
+     "en": "buff: 18 -> 20. Upgraded: 26 -> 28"
+    }
+   ]
+  },
+  "DeadlyPoisonG": {
+   "cn": "致命毒药",
+   "list": [
+    {
+     "ver": "WP18",
+     "date": "2018-03-30",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "中毒层数从 4 提升至 5（+ 升级版从 6 提升至 7）",
+     "en": "buff: 4 -> 5. Upgraded: 6 -> 7."
+    }
+   ]
+  },
+  "EvolveR": {
+   "cn": "进化",
+   "list": [
+    {
+     "ver": "WP18",
+     "date": "2018-03-30",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "不再产生「伤口」；现在对任意状态牌触发，而非仅「伤口」",
+     "en": "No longer gives Wounds. Now triggers on any Status card, not just Wounds."
+    }
+   ]
+  },
+  "CurseoftheBell": {
+   "cn": "铃铛的诅咒",
+   "list": [
+    {
+     "ver": "WP17",
+     "date": "2018-03-22",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "新增：升天者的灾祸——不可打出，无法从牌组中移除",
+     "en": "- Ascender's Bane: Unplayable. Cannot be removed from your deck."
+    }
+   ]
+  },
+  "RageR": {
+   "cn": "狂怒",
+   "list": [
+    {
+     "ver": "WP16",
+     "date": "2018-03-15",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "获得增强：消耗从 1 降至 0，格挡从 4 降至 3",
+     "en": "gets a buff, cost 1 -> 0. Block 4 -> 3."
+    }
+   ]
+  },
+  "Bite": {
+   "cn": "噬咬",
+   "list": [
+    {
+     "ver": "WP10",
+     "date": "2018-02-02",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现为无色卡牌",
+     "en": "is now a Colorless card."
+    }
+   ]
+  },
+  "ExhumeR": {
+   "cn": "发掘",
+   "list": [
+    {
+     "ver": "WP7",
+     "date": "2018-01-12",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "不再能将「发掘」类卡返回手牌",
+     "en": "can no longer return an Exhume card to your hand."
+    }
+   ]
+  },
+  "CloakAndDaggerG": {
+   "cn": "斗篷与匕首",
+   "list": [
+    {
+     "ver": "WP7",
+     "date": "2018-01-12",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "在卡牌匹配事件解锁前，「匕首」不再出现，取而代之始终会有一张「中和」",
+     "en": "and Dagger no longer appears in the card match event before it is unlocked, instead there is always a copy of Neutralize."
+    }
+   ]
+  },
+  "BulletTimeG": {
+   "cn": "子弹时间",
+   "list": [
+    {
+     "ver": "WP5",
+     "date": "2017-12-21",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在影响手牌中所有卡，可与「疯狂」配合，且不再对你施加能力",
+     "en": "now affects all cards currently in hand, works with Madness, and no longer applies a Power to you."
+    }
+   ]
+  },
+  "Panache": {
+   "cn": "神气制胜",
+   "list": [
+    {
+     "ver": "WP5",
+     "date": "2017-12-21",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "削弱：触发所需牌数从 4 张提升至 5 张",
+     "en": "gets nerfed (4 card trigger -> 5 card trigger)."
+    }
+   ]
+  },
+  "EnvenomG": {
+   "cn": "涂毒",
+   "list": [
+    {
+     "ver": "WP5",
+     "date": "2017-12-21",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "为表述清晰而优化描述",
+     "en": "gets a wording update for clarity."
+    }
+   ]
+  },
+  "Dazed": {
+   "cn": "晕眩",
+   "list": [
+    {
+     "ver": "WP5",
+     "date": "2017-12-21",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "与「笨拙」现在即使通过「周密计划」保留也会消耗（所有虚无卡均如此）",
+     "en": "and Clumsy now exhaust even if retained via Well Laid Plans (all Ethereal cards)."
+    },
+    {
+     "ver": "WP3",
+     "date": "2017-12-08",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现为虚无牌（对实际玩法影响不大）",
+     "en": "is now Ethereal. Doesn't really impact gameplay."
+    }
+   ]
+  },
+  "CalculatedGambleG": {
+   "cn": "计算下注",
+   "list": [
+    {
+     "ver": "WP4",
+     "date": "2017-12-15",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "整体改动",
+     "en": "nerfed."
+    }
+   ]
+  },
+  "AfterImageG": {
+   "cn": "余像",
+   "list": [
+    {
+     "ver": "WP4",
+     "date": "2017-12-15",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "大图现在正常显示",
+     "en": "'s large portrait now renders."
+    },
+    {
+     "ver": "WP3",
+     "date": "2017-12-08",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在通过「医疗包」「蓝烛」打出诅咒/状态牌时也能生效",
+     "en": "now works when playing Curse/Status cards via Medical Kit and Blue Candle."
+    }
+   ]
+  },
+  "CorpseExplosionG": {
+   "cn": "尸爆术",
+   "list": [
+    {
+     "ver": "WP3",
+     "date": "2017-12-08",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "类型现改为攻击牌",
+     "en": "'s type is now Attack."
+    }
+   ]
+  },
+  "DaggerSprayG": {
+   "cn": "匕首雨",
+   "list": [
+    {
+     "ver": "WP3",
+     "date": "2017-12-08",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "获得增强",
+     "en": "buff."
+    }
+   ]
+  },
+  "DieDieDieG": {
+   "cn": "死吧死吧死吧",
+   "list": [
+    {
+     "ver": "WP3",
+     "date": "2017-12-08",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "获得增强",
+     "en": "buff."
+    }
+   ]
+  },
+  "Trip": {
+   "cn": "绊倒",
+   "list": [
+    {
+     "ver": "WP3",
+     "date": "2017-12-08",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "整体改动",
+     "en": "buffed."
+    }
+   ]
+  },
+  "BrutalityR": {
+   "cn": "残暴",
+   "list": [
+    {
+     "ver": "WP1",
+     "date": "2017-11-25",
+     "kind": "buff",
+     "kindCn": "增强",
+     "zh": "整体改动",
+     "en": "buffed."
+    }
+   ]
+  },
+  "ConcentrateG": {
+   "cn": "全神贯注",
+   "list": [
+    {
+     "ver": "WP1",
+     "date": "2017-11-25",
+     "kind": "rework",
+     "kindCn": "重做",
+     "zh": "整体改动",
+     "en": "reworked."
+    }
+   ]
+  },
+  "DualWieldR": {
+   "cn": "双持",
+   "list": [
+    {
+     "ver": "WP1",
+     "date": "2017-11-25",
+     "kind": "rework",
+     "kindCn": "重做",
+     "zh": "重做并增强",
+     "en": "reworked and buffed."
+    }
+   ]
+  },
+  "PerfectedStrikeR": {
+   "cn": "完美打击",
+   "list": [
+    {
+     "ver": "WP1",
+     "date": "2017-11-25",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "现在统计标题含「打击」的所有卡牌，如迅捷打击、狂野打击等",
+     "en": "Now counts ALL cards with the word Strike in its title. Swift Strike, Wild Strike, etc."
+    }
+   ]
+  },
+  "ToolsoftheTradeG": {
+   "cn": "必备工具",
+   "list": [
+    {
+     "ver": "WP1",
+     "date": "2017-11-25",
+     "kind": "nerf",
+     "kindCn": "削弱",
+     "zh": "削弱：不再为固有",
+     "en": "nerf. No longer innate."
+    }
+   ]
+  },
+  "Necronomicurse": {
+   "cn": "死灵诅咒",
+   "list": [
+    {
+     "ver": "WP1",
+     "date": "2017-11-25",
+     "kind": "change",
+     "kindCn": "调整",
+     "zh": "不再出现在移除卡牌界面（因为它无法被移除）",
+     "en": "no longer shows up on card removal screens (since it cannot be removed)."
+    }
+   ]
+  }
+ }
+}
