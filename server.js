@@ -21,6 +21,18 @@ const ROOT = __dirname;
 const PORT = process.env.PORT || 3000;
 const TURN_MS = 30000;
 
+// 自动资源版本号：对核心静态文件内容做哈希，喂给 index.html 里的 ?v=... 缓存击穿参数。
+// 用内容哈希而非 mtime：某些部署平台会保留文件 mtime，导致版本号不变、浏览器仍命中旧缓存。
+// 只要 data.js/app.js/styles.css 任一内容变化，哈希必变，浏览器强制重新拉取，无需手动 bump 版本号。
+const ASSET_VER = (() => {
+  const crypto = require('crypto');
+  const h = crypto.createHash('md5');
+  for (const f of ['data.js', 'app.js', 'styles.css', 'pinyin-map.js', 'index.html']) {
+    try { h.update(fs.readFileSync(path.join(ROOT, f))); } catch (e) { /* 文件缺失则忽略 */ }
+  }
+  return 'v' + h.digest('hex').slice(0, 10);
+})();
+
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -391,6 +403,10 @@ const server = http.createServer(async (req, res) => {
   if (!filePath.startsWith(ROOT)) { res.writeHead(403); res.end('Forbidden'); return; }
   fs.readFile(filePath, (err, data) => {
     if (err) { res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }); res.end('Not found'); return; }
+    // 对 index.html：用启动期算出的资源版本号替换 ?v=...，确保改数据/脚本后浏览器强制重拉
+    if (urlPath === '/index.html' && Buffer.isBuffer(data)) {
+      data = Buffer.from(String(data).replace(/\?v=[^"&]+/g, '?v=' + ASSET_VER));
+    }
     const ext = path.extname(filePath).toLowerCase();
     const ae = (req.headers && req.headers['accept-encoding']) || '';
     if (/gzip/.test(ae) && Buffer.isBuffer(data)) {
